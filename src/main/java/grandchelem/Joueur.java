@@ -17,7 +17,7 @@ public class Joueur extends Personne {
     private Couleur couleurShort;
     private static int compteurJoueur;
     
-    public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, int classement, String entraineur){
+    public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, String entraineur){
         super(genre, nomNaissance, prenom);
         this.main = main;
         this.sponsor = sponsor;
