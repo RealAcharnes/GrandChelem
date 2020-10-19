@@ -10,11 +10,11 @@ package grandchelem;
  * @author jeanc
  */
 public class Joueur extends Personne {
-    public int main;    //1 = droitier 2 = gaucher
-    public String sponsor;
-    public int classement;
-    public String entraineur;
-    public Couleur couleurShort;
+    private int main;    //1 = droitier 2 = gaucher
+    private String sponsor;
+    private int classement;
+    private String entraineur;
+    private Couleur couleurShort;
     private static int compteurJoueur;
     
     public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, int classement, String entraineur){
@@ -41,5 +41,18 @@ public class Joueur extends Personne {
     }
     public Couleur getCouleurShort(){
         return this.couleurShort;
+    }
+    //Mutator
+    public void setSponsor(String sponsor){
+        this.sponsor = sponsor;
+    }
+    public void setClassement(int classement){
+        this.classement = classement;
+    }
+    public void setEntraineur(String entraineur){
+        this.entraineur = entraineur;
+    }
+    public void setCouleurShort(Couleur couleurShort){
+        this.couleurShort = couleurShort;
     }
 }
