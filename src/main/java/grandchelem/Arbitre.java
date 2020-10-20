@@ -15,4 +15,9 @@ public class Arbitre extends Personne{
     public Arbitre(int genre, String nomNaissance, String prenom){
         super(genre, nomNaissance, prenom);
     }
+    
+    @Override
+    public String toString() {
+        return prenom + " " + nomNaissance;
+    }
 }
