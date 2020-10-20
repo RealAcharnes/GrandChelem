@@ -10,21 +10,29 @@ package grandchelem;
  * @author jeanc
  */
 public class Joueur extends Personne {
-    private int main;    //1 = droitier 2 = gaucher
+    final int main;    //1 = droitier 2 = gaucher
     private String sponsor;
     private int classement;
     private String entraineur;
+    private Habits habit;
     private Couleur couleurShort;
     private static int compteurJoueur;
     
-    public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, String entraineur){
+    public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, String entraineur, String nationalite){
         super(genre, nomNaissance, prenom);
+        if (genre==2){
+            habit=Habits.JUPE;
+        }
+        else{
+            habit=Habits.SHORT;
+        }
         this.main = main;
         this.sponsor = sponsor;
         this.entraineur = entraineur;
         this.couleurShort = Couleur.BLEU;   //Couleur par défaut pour un homme -> Bleu
         compteurJoueur++;
         this.classement = compteurJoueur;
+        this.nationalite=nationalite;
     }
     //Accessors
     public int getMain(){
@@ -55,4 +63,11 @@ public class Joueur extends Personne {
     public void setCouleurShort(Couleur couleurShort){
         this.couleurShort = couleurShort;
     }
+
+    @Override
+    public String toString() {
+        return prenom + " " + nomNaissance + " (" + nationalite + ')';
+    }
+    
+    
 }

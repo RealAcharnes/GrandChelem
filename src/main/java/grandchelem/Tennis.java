@@ -15,7 +15,10 @@ public class Tennis {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Joueur joueur1 = new Joueur(1, "Fenart", "Charles", 2, "Wilson", "Alexis", "Français");
+        Joueur joueur2 = new Joueur(1, "Coudon", "Jean Charles", 1, "Babolat", "Alexis", "Français");
+        Arbitre arbitre = new Arbitre(1, "Texier", "Eloi");
+        Match match = new Match(joueur1, joueur2, arbitre);
     }
     
 }

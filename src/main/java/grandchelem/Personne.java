@@ -123,4 +123,11 @@ public class Personne {
         }
         return age;
     }
+
+    @Override
+    public String toString() {
+        return prenom + " " + nomNaissance;
+    }
+    
+    
 }
