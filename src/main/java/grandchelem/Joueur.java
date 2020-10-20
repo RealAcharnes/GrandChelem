@@ -14,7 +14,7 @@ public class Joueur extends Personne {
     private String sponsor;
     private int classement;
     private String entraineur;
-    private Habits habit;
+    final Habits habit;
     private Couleur couleurShort;
     private static int compteurJoueur;
     
