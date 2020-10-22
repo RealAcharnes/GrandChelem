@@ -46,15 +46,11 @@ public class Match {
     public Joueur jouerSet(){
         Set set = new Set(joueur1, joueur2);
         while (!set.setRemporte()){
-            double i = Math.random();
-            if (i<0.5){
-                set.jeuRemporte(joueur1);
-            }
-            else{
-                set.jeuRemporte(joueur2);
-            }
+            set.jeuRemporte(set.jouerJeu());
         }
         setGagne(set.gagnantSet());
+        System.out.print("Sets :");
+        printScores();
         return set.gagnantSet();
     }
     

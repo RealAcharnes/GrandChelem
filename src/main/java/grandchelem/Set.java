@@ -17,6 +17,21 @@ public class Set {
         this.joueur2=joueur2;
     }
     
+    public Joueur jouerJeu(){
+        Jeu jeu = new Jeu(joueur1, joueur2);
+        while (!jeu.jeuRemporte()){
+            double i = Math.random();
+            if (i<0.5){
+                jeu.pointRemporte(joueur1);
+            }
+            else{
+                jeu.pointRemporte(joueur2);
+            }
+        }
+        System.out.println("Jeux : " + toString());
+        return jeu.gagnantJeu();
+    }
+    
     public void jeuRemporte(Joueur gagnant){
         if (gagnant==joueur1){
             jeuxJoueur1++;
@@ -35,5 +50,10 @@ public class Set {
             return joueur1;
         }
         return joueur2;
+    }
+    
+    @Override
+    public String toString() {
+        return joueur1 + " " + jeuxJoueur1 + " , " + jeuxJoueur2 + " " + joueur2 ;
     }
 }
