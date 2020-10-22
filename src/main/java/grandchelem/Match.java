@@ -35,23 +35,33 @@ public class Match {
     }
     
     public Joueur jouerMatch(){
+        int i=0;
         while (!matchRemporte()){
-            jouerSet();
+            int[] tab=jouerSet();
+            scores[i][0]=tab[0];
+            scores[i][1]=tab[1];
+            i++;
         }
         printScores();
         System.out.println("Le gagnant est : " + gagnantMatch());
         return gagnantMatch();
     }
     
-    public Joueur jouerSet(){
+    public int[] jouerSet(){
+        int i=0;
         Set set = new Set(joueur1, joueur2);
         while (!set.setRemporte()){
             set.jeuRemporte(set.jouerJeu());
+            System.out.println("Jeux : " + set.toString());
+            if (i!=4){
+                i++;
+            }
         }
+        int[] tab = new int[2];
+        tab[0]=set.jeuxJoueur1;
+        tab[1]=set.jeuxJoueur2;
         setGagne(set.gagnantSet());
-        System.out.print("Sets :");
-        printScores();
-        return set.gagnantSet();
+        return tab;
     }
     
     public void setGagne(Joueur gagnant){
@@ -75,7 +85,22 @@ public class Match {
     }
     
     public void printScores(){
-        System.out.println(joueur1 + " " + setJoueur1 + " ; " + setJoueur2 + " " + joueur2);
+        System.out.println("");
+        System.out.println(joueur1);
+        for (int i=0 ; i<2 ; i++){
+            for (int j=0 ; j<setJoueur1+setJoueur2 ; j++){
+                System.out.print(" " + scores[j][i] + " -");
+            }
+            if (i==0){
+                System.out.println("> " + setJoueur1 + " set(s) remportés");
+            }
+            else{
+                System.out.println("> " + setJoueur2 + " set(s) remportés");
+            }
+            
+        }
+        System.out.println(joueur2);
+        System.out.println("");
     }
 
     @Override

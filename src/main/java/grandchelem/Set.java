@@ -28,7 +28,6 @@ public class Set {
                 jeu.pointRemporte(joueur2);
             }
         }
-        System.out.println("Jeux : " + toString());
         return jeu.gagnantJeu();
     }
     
