@@ -87,18 +87,26 @@ public class Match {
     public void printScores(){
         System.out.println("");
         System.out.println(joueur1);
+        for (int i=0 ; i<(setJoueur1+setJoueur2)*4+1 ; i++){
+            System.out.print("_");
+        }
+        System.out.println("");
         for (int i=0 ; i<2 ; i++){
             for (int j=0 ; j<setJoueur1+setJoueur2 ; j++){
-                System.out.print(" " + scores[j][i] + " -");
+                System.out.print("| " + scores[j][i] + " ");
             }
             if (i==0){
-                System.out.println("> " + setJoueur1 + " set(s) remportés");
+                System.out.println("| --> " + setJoueur1 + " set(s) remportés");
             }
             else{
-                System.out.println("> " + setJoueur2 + " set(s) remportés");
+                System.out.println("| --> " + setJoueur2 + " set(s) remportés");
             }
             
         }
+        for (int i=0 ; i<(setJoueur1+setJoueur2)*4+1 ; i++){
+            System.out.print("¯");
+        }
+        System.out.println("");
         System.out.println(joueur2);
         System.out.println("");
     }
