@@ -17,6 +17,40 @@ public class Jeu {
         this.joueur2=joueur2;
     }
     
+    public Joueur jouerEchange(int serveur){
+        Echange echange = new Echange(joueur1, joueur2, serveur);
+        int premierService = echange.premierService();
+        while(premierService == 2){
+            premierService =echange.premierService();
+        }
+        if (premierService == 1){
+            while (!echange.echangeRemporte()){
+                if(echange.retour() == 0){
+                    echange.gagnantEchange=echange.gagnantEchange();
+                } 
+            }
+        }
+        else{
+            int secondService = echange.secondService();
+            while(secondService == 2){
+                secondService = echange.secondService();
+            }
+            if (secondService == 1){
+                while (!echange.echangeRemporte()){
+                    if(echange.retour() == 0){
+                        echange.gagnantEchange=echange.gagnantEchange();
+                    }
+                }
+            }
+            else{
+                echange.gagnantEchange=echange.gagnantEchange();
+            }
+        }
+        pointRemporte(echange.gagnantEchange);
+        System.out.println("Points : " + toString());
+        return echange.gagnantEchange;
+    }
+    
     public void pointRemporte(Joueur gagnant){
         if (gagnant==joueur1){
             switch (pointsJoueur1){

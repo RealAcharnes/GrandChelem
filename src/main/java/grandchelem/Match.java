@@ -48,14 +48,23 @@ public class Match {
     }
     
     public int[] jouerSet(){
-        int i=0;
+        int serveur;
+        if (setJoueur1+setJoueur2%2==0){
+            serveur=1;
+        }
+        else{
+            serveur=2;
+        }
         Set set = new Set(joueur1, joueur2);
         while (!set.setRemporte()){
-            set.jeuRemporte(set.jouerJeu());
-            System.out.println("Jeux : " + set.toString());
-            if (i!=4){
-                i++;
+            set.jeuRemporte(set.jouerJeu(serveur));
+            if (serveur==1){
+                serveur=2;
             }
+            else{
+                serveur=1;
+            }
+            System.out.println("Jeux : " + set.toString());
         }
         int[] tab = new int[2];
         tab[0]=set.jeuxJoueur1;

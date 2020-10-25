@@ -17,16 +17,10 @@ public class Set {
         this.joueur2=joueur2;
     }
     
-    public Joueur jouerJeu(){
+    public Joueur jouerJeu(int serveur){
         Jeu jeu = new Jeu(joueur1, joueur2);
         while (!jeu.jeuRemporte()){
-            double i = Math.random();
-            if (i<0.5){
-                jeu.pointRemporte(joueur1);
-            }
-            else{
-                jeu.pointRemporte(joueur2);
-            }
+            jeu.jouerEchange(serveur);
         }
         return jeu.gagnantJeu();
     }
