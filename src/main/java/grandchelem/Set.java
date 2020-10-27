@@ -1,5 +1,6 @@
 package grandchelem;
 
+import java.util.Scanner;
 /**
  *
  * @author charl
@@ -18,9 +19,12 @@ public class Set {
     }
     
     public Joueur jouerJeu(int serveur){
+        Scanner saisieUtilisateur = new Scanner(System.in);
+        System.out.println("Veuillez indiquer si vous souhaitez jouer ce jeu de façon automatique (0) (default) ou bien manuelle (1)");
+        int input = saisieUtilisateur.nextInt();
         Jeu jeu = new Jeu(joueur1, joueur2);
         while (!jeu.jeuRemporte()){
-            jeu.jouerEchange(serveur);
+            jeu.jouerEchange(serveur, input);
         }
         return jeu.gagnantJeu();
     }

@@ -17,27 +17,27 @@ public class Jeu {
         this.joueur2=joueur2;
     }
     
-    public Joueur jouerEchange(int serveur){
+    public Joueur jouerEchange(int serveur, int mode){
         Echange echange = new Echange(joueur1, joueur2, serveur);
-        int premierService = echange.premierService();
+        int premierService = echange.premierService(mode);
         while(premierService == 2){
-            premierService =echange.premierService();
+            premierService =echange.premierService(mode);
         }
         if (premierService == 1){
             while (!echange.echangeRemporte()){
-                if(echange.retour() == 0){
+                if(echange.retour(mode) == 0){
                     echange.gagnantEchange=echange.gagnantEchange();
                 } 
             }
         }
         else{
-            int secondService = echange.secondService();
+            int secondService = echange.secondService(mode);
             while(secondService == 2){
-                secondService = echange.secondService();
+                secondService = echange.secondService(mode);
             }
             if (secondService == 1){
                 while (!echange.echangeRemporte()){
-                    if(echange.retour() == 0){
+                    if(echange.retour(mode) == 0){
                         echange.gagnantEchange=echange.gagnantEchange();
                     }
                 }
