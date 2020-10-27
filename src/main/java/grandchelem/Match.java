@@ -5,6 +5,8 @@
  */
 package grandchelem;
 
+import java.util.Scanner;
+
 /**
  *
  * @author charl
@@ -35,9 +37,12 @@ public class Match {
     }
     
     public Joueur jouerMatch(){
+        Scanner saisieUtilisateur = new Scanner(System.in);
+        System.out.println("Veuillez indiquer si vous souhaitez jouer ce match de façon automatique (0) (default) ou bien manuelle (1)");
+        int input = saisieUtilisateur.nextInt();
         int i=0;
         while (!matchRemporte()){
-            int[] tab=jouerSet();
+            int[] tab=jouerSet(input);
             scores[i][0]=tab[0];
             scores[i][1]=tab[1];
             i++;
@@ -47,7 +52,13 @@ public class Match {
         return gagnantMatch();
     }
     
-    public int[] jouerSet(){
+    public int[] jouerSet(int mode){
+        if (mode==1){
+            Scanner saisieUtilisateur = new Scanner(System.in);
+            System.out.println("Veuillez indiquer si vous souhaitez jouer ce set de façon automatique (0) (default) ou bien manuelle (1)");
+            int input = saisieUtilisateur.nextInt();
+            mode=input;
+        }    
         int serveur;
         if (setJoueur1+setJoueur2%2==0){
             serveur=1;
@@ -57,7 +68,7 @@ public class Match {
         }
         Set set = new Set(joueur1, joueur2);
         while (!set.setRemporte()){
-            set.jeuRemporte(set.jouerJeu(serveur));
+            set.jeuRemporte(set.jouerJeu(serveur, mode));
             if (serveur==1){
                 serveur=2;
             }

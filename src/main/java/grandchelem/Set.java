@@ -18,15 +18,18 @@ public class Set {
         this.joueur2=joueur2;
     }
     
-    public Joueur jouerJeu(int serveur){
-        Scanner saisieUtilisateur = new Scanner(System.in);
-        System.out.println("Veuillez indiquer si vous souhaitez jouer ce jeu de façon automatique (0) (default) ou bien manuelle (1)");
-        int input = saisieUtilisateur.nextInt();
+    public Joueur jouerJeu(int serveur, int mode){
+        if (mode==1){
+            Scanner saisieUtilisateur = new Scanner(System.in);
+            System.out.println("Veuillez indiquer si vous souhaitez jouer ce jeu de façon automatique (0) (default) ou bien manuelle (1)");
+            int input = saisieUtilisateur.nextInt();
+            mode=input;
+        }
         Jeu jeu = new Jeu(joueur1, joueur2);
         while (!jeu.jeuRemporte()){
-            jeu.jouerEchange(serveur, input);
+            jeu.jouerEchange(serveur, mode);
         }
-        return jeu.gagnantJeu();
+        return jeu.gagnantJeu();  
     }
     
     public void jeuRemporte(Joueur gagnant){
