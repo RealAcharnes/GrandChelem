@@ -25,6 +25,8 @@ public class Tennis {
         match.jouerMatch();*/
         
         TestReadingFile.readCsv();
+        
+        test;
     }
     
 }
