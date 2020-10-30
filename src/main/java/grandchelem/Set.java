@@ -10,12 +10,14 @@ public class Set {
     int jeuxJoueur2;
     Joueur joueur1;
     Joueur joueur2;
+    Arbitre arbitre;
     
-    public Set(Joueur joueur1, Joueur joueur2){
+    public Set(Joueur joueur1, Joueur joueur2, Arbitre arbitre){
         jeuxJoueur1=0;
         jeuxJoueur2=0;
         this.joueur1=joueur1;
         this.joueur2=joueur2;
+        this.arbitre=arbitre;
     }
     
     public Joueur jouerJeu(int serveur, int mode){
@@ -25,7 +27,7 @@ public class Set {
             int input = saisieUtilisateur.nextInt();
             mode=input;
         }
-        Jeu jeu = new Jeu(joueur1, joueur2);
+        Jeu jeu = new Jeu(joueur1, joueur2, arbitre);
         while (!jeu.jeuRemporte()){
             jeu.jouerEchange(serveur, mode);
         }

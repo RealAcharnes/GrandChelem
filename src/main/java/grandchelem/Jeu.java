@@ -9,12 +9,14 @@ public class Jeu {
     int pointsJoueur2;
     Joueur joueur1;
     Joueur joueur2;
+    Arbitre arbitre;
     
-    public Jeu(Joueur joueur1, Joueur joueur2){
+    public Jeu(Joueur joueur1, Joueur joueur2, Arbitre arbitre){
         pointsJoueur1=0;
         pointsJoueur2=0;
         this.joueur1=joueur1;
         this.joueur2=joueur2;
+        this.arbitre=arbitre;
     }
     
     public Joueur jouerEchange(int serveur, int mode){

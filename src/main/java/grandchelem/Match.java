@@ -66,7 +66,7 @@ public class Match {
         else{
             serveur=2;
         }
-        Set set = new Set(joueur1, joueur2);
+        Set set = new Set(joueur1, joueur2, arbitre);
         while (!set.setRemporte()){
             set.jeuRemporte(set.jouerJeu(serveur, mode));
             if (serveur==1){
