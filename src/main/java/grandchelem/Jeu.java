@@ -10,6 +10,7 @@ public class Jeu {
     Joueur joueur1;
     Joueur joueur2;
     Arbitre arbitre;
+    int serveur;
     
     public Jeu(Joueur joueur1, Joueur joueur2, Arbitre arbitre){
         pointsJoueur1=0;
@@ -21,6 +22,7 @@ public class Jeu {
     
     public Joueur jouerEchange(int serveur, int mode){
         Echange echange = new Echange(joueur1, joueur2, serveur);
+        this.serveur = serveur;
         int premierService = echange.premierService(mode);
         while(premierService == 2){
             premierService =echange.premierService(mode);
@@ -100,7 +102,12 @@ public class Jeu {
 
     @Override
     public String toString() {
-        return joueur1 + " " + pointsJoueur1 + " , " + pointsJoueur2 + " " + joueur2 ;
+        if (serveur == 1) {
+            return joueur1 + " " + pointsJoueur1 + " , " + pointsJoueur2 + " " + joueur2 ;
+        }
+        else{
+            return joueur2 + " " + pointsJoueur2 + " , " + pointsJoueur1 + " " + joueur1 ;
+        }
     }
     
     
