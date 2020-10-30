@@ -50,6 +50,21 @@ public class Jeu {
                 echange.gagnantEchange=echange.gagnantEchange();
             }
         }
+        if (Math.random() < 0.15){
+            System.out.println(echange.gagnantEchange + " a gagné l'échange, mais un litige a été demandé.");
+            if (Math.random() < arbitre.humeur) {
+                if (echange.gagnantEchange == joueur1){
+                    echange.gagnantEchange = joueur2;
+                }
+                else{
+                    echange.gagnantEchange = joueur1;
+                }
+                System.out.println("Le point est accordé à " + echange.gagnantEchange + " qui a demandé le litige.");
+            }
+            else {
+                System.out.println("L'arbitre reste sur sa première décision, " + echange.gagnantEchange + " gagne le point");
+            }
+        }
         pointRemporte(echange.gagnantEchange);
         System.out.println("Points : " + toString());
         return echange.gagnantEchange;
