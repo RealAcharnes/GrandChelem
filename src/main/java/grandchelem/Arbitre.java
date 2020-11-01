@@ -22,6 +22,10 @@ public class Arbitre extends Personne{
         this.humeur = humeur;
     }
     
+    public double getHumeur(){
+        return this.humeur;
+    }
+    
     @Override
     public String toString() {
         return prenom + " " + nomNaissance;

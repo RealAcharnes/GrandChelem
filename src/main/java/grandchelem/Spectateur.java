@@ -13,4 +13,9 @@ public class Spectateur extends Personne {
     public Spectateur(int genre, String nomNaissance, String prenom){
         super(genre, nomNaissance, prenom);
     }
+    
+    @Override
+    public String toString(){
+        return prenom + " " + nomNaissance;
+    }
 }

@@ -17,7 +17,7 @@ public class Joueur extends Personne {
     final Habits habit;
     private Couleur couleurShort;
     private static int compteurJoueur;
-    
+        
     public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, String entraineur, String nationalite){
         super(genre, nomNaissance, prenom);
         if (genre==2){

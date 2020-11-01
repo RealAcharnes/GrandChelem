@@ -52,7 +52,7 @@ public class Jeu {
         }
         if (Math.random() < 0.15){
             System.out.println(echange.gagnantEchange + " a gagné l'échange, mais un litige a été demandé.");
-            if (Math.random() < arbitre.humeur) {
+            if (Math.random() < arbitre.getHumeur()) {
                 if (echange.gagnantEchange == joueur1){
                     echange.gagnantEchange = joueur2;
                 }
