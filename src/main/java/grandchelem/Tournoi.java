@@ -23,11 +23,16 @@ public class Tournoi {
     ArrayList<Joueur> quartDeFinale;
     ArrayList<Joueur> DemiFinale;
     ArrayList<Joueur> finale;
+    private static int compteurTournoi;
+    int tournoiNumero;
     
     public Tournoi(ArrayList<Joueur> listeJoueur, ArrayList<Arbitre> listeArbitre, ArrayList<Spectateur> listeSpectateur){
         this.listeJoueur = listeJoueur;
         this.listeArbitre = listeArbitre;
         this.listeSpectateur = listeSpectateur;
+        compteurTournoi++;
+        this.tournoiNumero = compteurTournoi;
+        
     }
     
     //Un tournoi comporte 128 joueurs, disons qu'il comporte 25 arbitres.
@@ -55,6 +60,16 @@ public class Tournoi {
             this.listeSpectateur.add(unspectateur);
         }
         return this.listeSpectateur;
+    }
+    
+    public void startTournoi() throws IOException{
+        genererJoueursTournoi();
+        genererArbitresTournoi();
+        genererSpectateursTournoi();         
+    }
+    
+    public int getTournoiNumero (){
+        return this.tournoiNumero;
     }
     
 }

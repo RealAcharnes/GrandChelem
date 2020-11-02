@@ -20,6 +20,8 @@ public class Menu {
     ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
     ArrayList<Arbitre> listeArbitre = new ArrayList<Arbitre>();
     ArrayList<Spectateur> listeSpectateur = new ArrayList<Spectateur>();
+    ArrayList<Tournoi> listeTournoi = new ArrayList<Tournoi>();
+    
     
     public Menu(){
         System.out.println("Bonjour et bienvenu, dans les menus qui vont suivre, lorqu'une proposition est précédée ou suivie d'un chiffre, veuillez répondre par le chiffre correspondant.");
@@ -40,7 +42,7 @@ public class Menu {
                 menuCreation();
             }
             case 2 -> {
-                
+                menuTournoi();
             }
         }  
     }
@@ -364,6 +366,23 @@ public class Menu {
                 }
             }
         }
+    }
+    
+    public void menuTournoi() {
+        System.out.println("Attention, si vous voulez inscrire des joueurs, des spectateurs ou des arbitres faite le avant de lancer un tournoi dans les menus précédents");
+        System.out.println("Que voulez vous faire ?");
+        System.out.println("1) Lancer un tournoi");
+        System.out.println("2) Obtenir les infos d'un tournoi");
+        System.out.println("3) Retour au menu principal");
+        Scanner saisieUser = new Scanner(System.in);
+        int choix = saisieUser.nextInt();
+        switch (choix){
+            case 1 -> {
+                Tournoi untournoi = new Tournoi(listeJoueur, listeArbitre, listeSpectateur);
+                System.out.println("Tournoi créer avec succès : 'Tournoi n" + untournoi.getTournoiNumero());
+            }
+        }
+        
     }
     
 }
