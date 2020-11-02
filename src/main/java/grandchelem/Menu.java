@@ -10,11 +10,16 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 /**
  *
  * @author jeanc
  */
 public class Menu {
+    
+    ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
+    ArrayList<Arbitre> listeArbitre = new ArrayList<Arbitre>();
+    ArrayList<Spectateur> listeSpectateur = new ArrayList<Spectateur>();
     
     public Menu(){
         System.out.println("Bonjour et bienvenu, dans les menus qui vont suivre, lorqu'une proposition est précédée ou suivie d'un chiffre, veuillez répondre par le chiffre correspondant.");
@@ -99,7 +104,6 @@ public class Menu {
                     }
                     String entraineur = inEntraineur.readLine();
                     String nationalite;
-                    System.out.println("Ligne" + ligneRandomNationalite);
                     if (ligneRandomNationalite == 1){
                         nationalite = inNationalite.readLine().substring(1);
                     }
@@ -110,7 +114,15 @@ public class Menu {
                         nationalite = inNationalite.readLine();
                     }
                     Joueur unjoueur = new Joueur(genre,nom,prenom,main,sponsor,entraineur,nationalite);
+                    System.out.println("");
                     System.out.println("Joueur crée : " + unjoueur.toString());
+                    listeJoueur.add(unjoueur);
+                    System.out.println("");
+                    System.out.println("Liste des joueurs");
+                    for (int j = 0; j< listeJoueur.size(); j++){
+                        System.out.println(listeJoueur.get(j));
+                    }
+                    System.out.println("");
                     System.out.println("Voulez vous crée un autre joueur ?");
                     System.out.println("1) Oui");
                     System.out.println("2) Non");
@@ -148,7 +160,15 @@ public class Menu {
                 System.out.println("Veuillez entrer la nationalité de votre joueur :");
                 String nationalite = saisieUser.nextLine();
                 Joueur joueurCree = new Joueur(genre,nom, prenom, main, sponsor, entraineur, nationalite);
+                System.out.println("");
                 System.out.println("Joueur crée : " + joueurCree.toString());
+                listeJoueur.add(joueurCree);
+                System.out.println("");
+                System.out.println("Liste des joueurs");
+                for (int j = 0; j< listeJoueur.size(); j++){
+                    System.out.println(listeJoueur.get(j));
+                }
+                System.out.println("");
                 System.out.println("Voulez vous crée un autre joueur ?");
                 System.out.println("1) Oui");
                 System.out.println("2) Non");
@@ -188,7 +208,15 @@ public class Menu {
                     }
                     String prenom = inPrenom.readLine().split(",")[0];
                     Arbitre unarbitre = new Arbitre(genre,nom,prenom);
+                    System.out.println("");
                     System.out.println("Arbitre crée : " + unarbitre.toString());
+                    listeArbitre.add(unarbitre);
+                    System.out.println("");
+                    System.out.println("Liste des arbitres");
+                    for (int j = 0; j< listeArbitre.size(); j++){
+                        System.out.println(listeArbitre.get(j));
+                    }
+                    System.out.println("");
                     System.out.println("Voulez vous crée un autre arbitre ?");
                     System.out.println("1) Oui");
                     System.out.println("2) Non");
@@ -214,7 +242,15 @@ public class Menu {
                 System.out.println("Veuillez entrer le prénom de votre arbitre :");
                 String prenom = saisieUser.nextLine();
                 Arbitre arbitreCree = new Arbitre(genre,nom, prenom);
+                System.out.println("");
                 System.out.println("Arbitre crée : " + arbitreCree.toString());
+                listeArbitre.add(arbitreCree);
+                System.out.println("");
+                System.out.println("Liste des arbitres");
+                for (int j = 0; j< listeArbitre.size(); j++){
+                    System.out.println(listeArbitre.get(j));
+                }
+                System.out.println("");
                 System.out.println("Voulez vous crée un autre arbitre ?");
                 System.out.println("1) Oui");
                 System.out.println("2) Non");
@@ -254,7 +290,15 @@ public class Menu {
                     }
                     String prenom = inPrenom.readLine().split(",")[0];
                     Spectateur unspectateur = new Spectateur(genre,nom,prenom);
+                    System.out.println("");
                     System.out.println("Personne du public crée : " + unspectateur.toString());
+                    listeSpectateur.add(unspectateur);
+                    System.out.println("");
+                    System.out.println("Liste des spectateurs");
+                    for (int j = 0; j< listeSpectateur.size(); j++){
+                        System.out.println(listeSpectateur.get(j));
+                    }
+                    System.out.println("");
                     System.out.println("Voulez vous crée une autre personne du public ?");
                     System.out.println("1) Oui");
                     System.out.println("2) Non");
@@ -280,7 +324,15 @@ public class Menu {
                 System.out.println("Veuillez entrer le prénom de votre spectateur :");
                 String prenom = saisieUser.nextLine();
                 Spectateur spectateurCree = new Spectateur(genre,nom, prenom);
+                System.out.println("");
                 System.out.println("Personne du public crée : " + spectateurCree.toString());
+                listeSpectateur.add(spectateurCree);
+                System.out.println("");
+                System.out.println("Liste des spectateurs");
+                for (int j = 0; j< listeSpectateur.size(); j++){
+                    System.out.println(listeSpectateur.get(j));
+                }
+                System.out.println("");
                 System.out.println("Voulez vous crée une autre personne du public ?");
                 System.out.println("1) Oui");
                 System.out.println("2) Non");
