@@ -32,11 +32,15 @@ public class Menu {
     public void StartMenu() throws IOException {
         System.out.println("Que souhaitez-vous faire ?");
         System.out.println("1) Créer une personne");
+        System.out.println("2) Lancer un tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
             case 1 -> {
                 menuCreation();
+            }
+            case 2 -> {
+                
             }
         }  
     }
@@ -55,7 +59,122 @@ public class Menu {
         }
     }
     
-    public void menuCreationJoueur() throws IOException{
+    public static Joueur creationAutomatiqueJoueur() throws IOException {
+        int genre = (int)(Math.random() * (3 - 1)) + 1;
+        int main = (int)(Math.random() * (3 - 1)) + 1;
+        BufferedReader inNom = null;
+        BufferedReader inPrenom = null;
+        BufferedReader inSponsor= null;
+        BufferedReader inEntraineur = null;
+        BufferedReader inNationalite = null;
+        int ligneRandomNom = (int)(Math.random() * (878923 - 1)) + 1;
+        int ligneRandomPrenom = (int)(Math.random() * (205894 - 1)) + 1;
+        int ligneRandomSponsor = (int)(Math.random() * (11 - 1)) + 1;
+        int ligneRandomEntraineur = (int)(Math.random() * (27 - 1)) + 1;
+        int ligneRandomNationalite = (int)(Math.random() * (17 - 1)) + 1;
+        try {
+            inNom = new BufferedReader(new FileReader("patronymes.csv", StandardCharsets.UTF_8));
+            inPrenom = new BufferedReader(new FileReader("prenom.csv", StandardCharsets.UTF_8));
+            inSponsor = new BufferedReader(new FileReader("sponsors.csv", StandardCharsets.UTF_8));
+            inEntraineur = new BufferedReader(new FileReader("entraineurs.csv", StandardCharsets.UTF_8));
+            inNationalite = new BufferedReader(new FileReader("nationalites.csv", StandardCharsets.UTF_8));
+            for (int i = 1; i<ligneRandomNom; i++) {
+                inNom.readLine();
+            }
+            String nom = inNom.readLine().split(",")[0];
+            for (int i = 1; i<ligneRandomPrenom; i++) {
+                inPrenom.readLine();
+            }
+            String prenom = inPrenom.readLine().split(",")[0];
+            String sponsor;
+            if (ligneRandomSponsor == 1){
+                sponsor = inSponsor.readLine().substring(1);
+            }
+            else {
+                for (int i = 1; i<ligneRandomSponsor; i++) {
+                    inSponsor.readLine();
+                }
+                sponsor = inNationalite.readLine();
+            }
+            for (int i = 1; i<ligneRandomEntraineur; i++) {
+                inEntraineur.readLine();
+            }
+            String entraineur = inEntraineur.readLine();
+            String nationalite;
+            if (ligneRandomNationalite == 1){
+                nationalite = inNationalite.readLine().substring(1);
+            }
+            else {
+                for (int i = 1; i<ligneRandomNationalite; i++) {
+                    inNationalite.readLine();
+                }
+                nationalite = inNationalite.readLine();
+            }
+            Joueur unjoueur = new Joueur(genre,nom,prenom,main,sponsor,entraineur,nationalite);
+            return unjoueur;
+        }
+        finally {
+                if (inNom != null)inNom.close();
+                if (inPrenom != null)inPrenom.close();
+                if (inSponsor != null)inSponsor.close();
+                if (inEntraineur != null)inEntraineur.close();
+                if (inNationalite != null)inNationalite.close();
+        }
+    }
+    
+    public static Arbitre creationAutomatiqueArbitre() throws IOException {
+        int genre = (int)(Math.random() * (3 - 1)) + 1;
+        BufferedReader inNom = null;
+        BufferedReader inPrenom = null;
+        int ligneRandomNom = (int)(Math.random() * (878923 - 1)) + 1;
+        int ligneRandomPrenom = (int)(Math.random() * (205894 - 1)) + 1;
+        try {
+            inNom = new BufferedReader(new FileReader("patronymes.csv", StandardCharsets.UTF_8));
+            inPrenom = new BufferedReader(new FileReader("prenom.csv", StandardCharsets.UTF_8));
+            for (int i = 1; i<ligneRandomNom; i++) {
+                inNom.readLine();
+            }
+            String nom = inNom.readLine().split(",")[0];
+            for (int i = 1; i<ligneRandomPrenom; i++) {
+                inPrenom.readLine();
+            }
+            String prenom = inPrenom.readLine().split(",")[0];
+            Arbitre unarbitre = new Arbitre(genre,nom,prenom);
+            return unarbitre;
+        }
+        finally {
+            if (inNom != null)inNom.close();
+            if (inPrenom != null)inPrenom.close();
+        } 
+    }
+    
+    public static Spectateur creationAutomatiqueSpectateur() throws IOException {
+        int genre = (int)(Math.random() * (3 - 1)) + 1;
+        BufferedReader inNom = null;
+        BufferedReader inPrenom = null;
+        int ligneRandomNom = (int)(Math.random() * (878923 - 1)) + 1;
+        int ligneRandomPrenom = (int)(Math.random() * (205894 - 1)) + 1;
+        try {
+            inNom = new BufferedReader(new FileReader("patronymes.csv", StandardCharsets.UTF_8));
+            inPrenom = new BufferedReader(new FileReader("prenom.csv", StandardCharsets.UTF_8));
+            for (int i = 1; i<ligneRandomNom; i++) {
+                inNom.readLine();
+            }
+            String nom = inNom.readLine().split(",")[0];
+            for (int i = 1; i<ligneRandomPrenom; i++) {
+                inPrenom.readLine();
+            }
+            String prenom = inPrenom.readLine().split(",")[0];
+            Spectateur unspectateur = new Spectateur(genre,nom,prenom);
+            return unspectateur;
+        }
+        finally {
+            if (inNom != null)inNom.close();
+            if (inPrenom != null)inPrenom.close();
+        }
+    }
+    
+    public void menuCreationJoueur() throws IOException {
         System.out.println("Voulez-vous créer un joueur de facon automatique ou manuel ?");
         System.out.println("1) Automatique");
         System.out.println("2) Manuel");
@@ -63,84 +182,26 @@ public class Menu {
         int choix = saisieUser.nextInt();
         switch (choix) {
             case 1 ->{
-                int genre = (int)(Math.random() * (3 - 1)) + 1;
-                int main = (int)(Math.random() * (3 - 1)) + 1;
-                BufferedReader inNom = null;
-                BufferedReader inPrenom = null;
-                BufferedReader inSponsor= null;
-                BufferedReader inEntraineur = null;
-                BufferedReader inNationalite = null;
-                int ligneRandomNom = (int)(Math.random() * (878923 - 1)) + 1;
-                int ligneRandomPrenom = (int)(Math.random() * (205894 - 1)) + 1;
-                int ligneRandomSponsor = (int)(Math.random() * (11 - 1)) + 1;
-                int ligneRandomEntraineur = (int)(Math.random() * (27 - 1)) + 1;
-                int ligneRandomNationalite = (int)(Math.random() * (17 - 1)) + 1;
-                try {
-                    inNom = new BufferedReader(new FileReader("patronymes.csv", StandardCharsets.UTF_8));
-                    inPrenom = new BufferedReader(new FileReader("prenom.csv", StandardCharsets.UTF_8));
-                    inSponsor = new BufferedReader(new FileReader("sponsors.csv", StandardCharsets.UTF_8));
-                    inEntraineur = new BufferedReader(new FileReader("entraineurs.csv", StandardCharsets.UTF_8));
-                    inNationalite = new BufferedReader(new FileReader("nationalites.csv", StandardCharsets.UTF_8));
-                    for (int i = 1; i<ligneRandomNom; i++) {
-                        inNom.readLine();
-                    }
-                    String nom = inNom.readLine().split(",")[0];
-                    for (int i = 1; i<ligneRandomPrenom; i++) {
-                        inPrenom.readLine();
-                    }
-                    String prenom = inPrenom.readLine().split(",")[0];
-                    String sponsor;
-                    if (ligneRandomSponsor == 1){
-                        sponsor = inSponsor.readLine().substring(1);
-                    }
-                    else {
-                        for (int i = 1; i<ligneRandomSponsor; i++) {
-                            inSponsor.readLine();
-                        }
-                        sponsor = inNationalite.readLine();
-                    }
-                    for (int i = 1; i<ligneRandomEntraineur; i++) {
-                        inEntraineur.readLine();
-                    }
-                    String entraineur = inEntraineur.readLine();
-                    String nationalite;
-                    if (ligneRandomNationalite == 1){
-                        nationalite = inNationalite.readLine().substring(1);
-                    }
-                    else {
-                        for (int i = 1; i<ligneRandomNationalite; i++) {
-                            inNationalite.readLine();
-                        }
-                        nationalite = inNationalite.readLine();
-                    }
-                    Joueur unjoueur = new Joueur(genre,nom,prenom,main,sponsor,entraineur,nationalite);
-                    System.out.println("");
-                    System.out.println("Joueur crée : " + unjoueur.toString());
-                    listeJoueur.add(unjoueur);
-                    System.out.println("");
-                    System.out.println("Liste des joueurs");
-                    for (int j = 0; j< listeJoueur.size(); j++){
-                        System.out.println(listeJoueur.get(j));
-                    }
-                    System.out.println("");
-                    System.out.println("Voulez vous crée un autre joueur ?");
-                    System.out.println("1) Oui");
-                    System.out.println("2) Non");
-                    int choix2 = saisieUser.nextInt();
-                    if (choix2 == 1) menuCreationJoueur();
-                    if (choix2 == 2){
-                        System.out.println("Retour au menu principal");
-                        System.out.println("");
-                        StartMenu();
-                    }
+                Joueur unjoueur = creationAutomatiqueJoueur();
+                System.out.println("");
+                System.out.println("Joueur crée : " + unjoueur.toString());
+                listeJoueur.add(unjoueur);
+                System.out.println("");
+                System.out.println("Liste des joueurs");
+                for (int j = 0; j< listeJoueur.size(); j++){
+                    System.out.println(listeJoueur.get(j));
                 }
-                finally {
-                    if (inNom != null)inNom.close();
-                    if (inPrenom != null)inPrenom.close();
-                    if (inSponsor != null)inSponsor.close();
-                    if (inEntraineur != null)inEntraineur.close();
-                    if (inNationalite != null)inNationalite.close();
-                }  
+                System.out.println("");
+                System.out.println("Voulez vous crée un autre joueur ?");
+                System.out.println("1) Oui");
+                System.out.println("2) Non");
+                int choix2 = saisieUser.nextInt();
+                if (choix2 == 1) menuCreationJoueur();
+                if (choix2 == 2){
+                    System.out.println("Retour au menu principal");
+                    System.out.println("");
+                    StartMenu();
+                }
             }
             case 2 -> {
                 System.out.println("Veuillez entrer le genre de votre joueur, homme(1) ou femme(2) :");
@@ -191,47 +252,26 @@ public class Menu {
         int choix = saisieUser.nextInt();
         switch (choix) {
             case 1 ->{
-                int genre = (int)(Math.random() * (3 - 1)) + 1;
-                BufferedReader inNom = null;
-                BufferedReader inPrenom = null;
-                int ligneRandomNom = (int)(Math.random() * (878923 - 1)) + 1;
-                int ligneRandomPrenom = (int)(Math.random() * (205894 - 1)) + 1;
-                try {
-                    inNom = new BufferedReader(new FileReader("patronymes.csv", StandardCharsets.UTF_8));
-                    inPrenom = new BufferedReader(new FileReader("prenom.csv", StandardCharsets.UTF_8));
-                    for (int i = 1; i<ligneRandomNom; i++) {
-                        inNom.readLine();
-                    }
-                    String nom = inNom.readLine().split(",")[0];
-                    for (int i = 1; i<ligneRandomPrenom; i++) {
-                        inPrenom.readLine();
-                    }
-                    String prenom = inPrenom.readLine().split(",")[0];
-                    Arbitre unarbitre = new Arbitre(genre,nom,prenom);
-                    System.out.println("");
-                    System.out.println("Arbitre crée : " + unarbitre.toString());
-                    listeArbitre.add(unarbitre);
-                    System.out.println("");
-                    System.out.println("Liste des arbitres");
-                    for (int j = 0; j< listeArbitre.size(); j++){
-                        System.out.println(listeArbitre.get(j));
-                    }
-                    System.out.println("");
-                    System.out.println("Voulez vous crée un autre arbitre ?");
-                    System.out.println("1) Oui");
-                    System.out.println("2) Non");
-                    int choix2 = saisieUser.nextInt();
-                    if (choix2 == 1) menuCreationArbitre();
-                    if (choix2 == 2){
-                        System.out.println("Retour au menu principal");
-                        System.out.println("");
-                        StartMenu();
-                    }
+                Arbitre unarbitre = creationAutomatiqueArbitre();
+                System.out.println("");
+                System.out.println("Arbitre crée : " + unarbitre.toString());
+                listeArbitre.add(unarbitre);
+                System.out.println("");
+                System.out.println("Liste des arbitres");
+                for (int j = 0; j< listeArbitre.size(); j++){
+                    System.out.println(listeArbitre.get(j));
                 }
-                finally {
-                    if (inNom != null)inNom.close();
-                    if (inPrenom != null)inPrenom.close();
-                }  
+                System.out.println("");
+                System.out.println("Voulez vous crée un autre arbitre ?");
+                System.out.println("1) Oui");
+                System.out.println("2) Non");
+                int choix2 = saisieUser.nextInt();
+                if (choix2 == 1) menuCreationArbitre();
+                if (choix2 == 2){
+                    System.out.println("Retour au menu principal");
+                    System.out.println("");
+                    StartMenu();
+                }
             }
             case 2 -> {
                 System.out.println("Veuillez entrer le genre de votre arbitre, homme(1) ou femme(2) :");
@@ -273,47 +313,26 @@ public class Menu {
         int choix = saisieUser.nextInt();
         switch (choix) {
             case 1 ->{
-                int genre = (int)(Math.random() * (3 - 1)) + 1;
-                BufferedReader inNom = null;
-                BufferedReader inPrenom = null;
-                int ligneRandomNom = (int)(Math.random() * (878923 - 1)) + 1;
-                int ligneRandomPrenom = (int)(Math.random() * (205894 - 1)) + 1;
-                try {
-                    inNom = new BufferedReader(new FileReader("patronymes.csv", StandardCharsets.UTF_8));
-                    inPrenom = new BufferedReader(new FileReader("prenom.csv", StandardCharsets.UTF_8));
-                    for (int i = 1; i<ligneRandomNom; i++) {
-                        inNom.readLine();
-                    }
-                    String nom = inNom.readLine().split(",")[0];
-                    for (int i = 1; i<ligneRandomPrenom; i++) {
-                        inPrenom.readLine();
-                    }
-                    String prenom = inPrenom.readLine().split(",")[0];
-                    Spectateur unspectateur = new Spectateur(genre,nom,prenom);
-                    System.out.println("");
-                    System.out.println("Personne du public crée : " + unspectateur.toString());
-                    listeSpectateur.add(unspectateur);
-                    System.out.println("");
-                    System.out.println("Liste des spectateurs");
-                    for (int j = 0; j< listeSpectateur.size(); j++){
-                        System.out.println(listeSpectateur.get(j));
-                    }
-                    System.out.println("");
-                    System.out.println("Voulez vous crée une autre personne du public ?");
-                    System.out.println("1) Oui");
-                    System.out.println("2) Non");
-                    int choix2 = saisieUser.nextInt();
-                    if (choix2 == 1) menuCreationPublic();
-                    if (choix2 == 2){
-                        System.out.println("Retour au menu principal");
-                        System.out.println("");
-                        StartMenu();
-                    }
+                Spectateur unspectateur = creationAutomatiqueSpectateur();
+                System.out.println("");
+                System.out.println("Personne du public crée : " + unspectateur.toString());
+                listeSpectateur.add(unspectateur);
+                System.out.println("");
+                System.out.println("Liste des spectateurs");
+                for (int j = 0; j< listeSpectateur.size(); j++){
+                    System.out.println(listeSpectateur.get(j));
                 }
-                finally {
-                    if (inNom != null)inNom.close();
-                    if (inPrenom != null)inPrenom.close();
-                }  
+                System.out.println("");
+                System.out.println("Voulez vous crée une autre personne du public ?");
+                System.out.println("1) Oui");
+                System.out.println("2) Non");
+                int choix2 = saisieUser.nextInt();
+                if (choix2 == 1) menuCreationPublic();
+                if (choix2 == 2){
+                    System.out.println("Retour au menu principal");
+                    System.out.println("");
+                    StartMenu();
+                } 
             }
             case 2 -> {
                 System.out.println("Veuillez entrer le genre de votre spectateur, homme(1) ou femme(2) :");
