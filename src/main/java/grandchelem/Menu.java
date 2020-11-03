@@ -379,7 +379,8 @@ public class Menu {
         switch (choix){
             case 1 -> {
                 Tournoi untournoi = new Tournoi(listeJoueur, listeArbitre, listeSpectateur);
-                System.out.println("Tournoi créer avec succès : 'Tournoi n" + untournoi.getTournoiNumero());
+                System.out.println("Tournoi créer avec succès : 'Tournoi n°" + untournoi.getTournoiNumero());
+                untournoi.jouerPremierTour();
             }
         }
         

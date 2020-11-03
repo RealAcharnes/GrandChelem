@@ -62,6 +62,18 @@ public class Tournoi {
         return this.listeSpectateur;
     }
     
+    public ArrayList<Joueur> jouerPremierTour(){
+        System.out.println("test2");
+        ArrayList<Joueur> secondTour = new ArrayList<>();
+        System.out.println(listeJoueur.size());
+        for (int i=0 ; i<listeJoueur.size()-1 ; i=i+2){
+            Match match = new Match(listeJoueur.get(i),listeJoueur.get(i+1),listeArbitre.get(1));
+            secondTour.add(match.jouerMatch());
+            System.out.println("test");
+        }
+        return secondTour;
+    }
+    
     public void startTournoi() throws IOException{
         genererJoueursTournoi();
         genererArbitresTournoi();
