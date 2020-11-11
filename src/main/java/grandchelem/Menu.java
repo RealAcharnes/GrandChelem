@@ -34,7 +34,7 @@ public class Menu {
     public void StartMenu() throws IOException {
         System.out.println("Que souhaitez-vous faire ?");
         System.out.println("1) Créer une personne");
-        System.out.println("2) Lancer un tournoi");
+        System.out.println("2) Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -52,12 +52,14 @@ public class Menu {
         System.out.println("1) Un joueur");
         System.out.println("2) Un arbitre");
         System.out.println("3) Une personne du public");
+        System.out.println("4) Retour");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix) {
             case 1 -> menuCreationJoueur();
             case 2 -> menuCreationArbitre();
             case 3 -> menuCreationPublic();
+            case 4 -> StartMenu();
         }
     }
     
@@ -200,6 +202,7 @@ public class Menu {
                 int choix2 = saisieUser.nextInt();
                 if (choix2 == 1) menuCreationJoueur();
                 if (choix2 == 2){
+                    System.out.println("");
                     System.out.println("Retour au menu principal");
                     System.out.println("");
                     StartMenu();
@@ -238,6 +241,7 @@ public class Menu {
                 int choix2 = saisieUser.nextInt();
                 if (choix2 == 1) menuCreationJoueur();
                 if (choix2 == 2){
+                    System.out.println("");
                     System.out.println("Retour au menu principal");
                     System.out.println("");
                     StartMenu();
@@ -270,6 +274,7 @@ public class Menu {
                 int choix2 = saisieUser.nextInt();
                 if (choix2 == 1) menuCreationArbitre();
                 if (choix2 == 2){
+                    System.out.println("");
                     System.out.println("Retour au menu principal");
                     System.out.println("");
                     StartMenu();
@@ -299,6 +304,7 @@ public class Menu {
                 int choix2 = saisieUser.nextInt();
                 if (choix2 == 1) menuCreationArbitre();
                 if (choix2 == 2){
+                    System.out.println("");
                     System.out.println("Retour au menu principal");
                     System.out.println("");
                     StartMenu();
@@ -331,6 +337,7 @@ public class Menu {
                 int choix2 = saisieUser.nextInt();
                 if (choix2 == 1) menuCreationPublic();
                 if (choix2 == 2){
+                    System.out.println("");
                     System.out.println("Retour au menu principal");
                     System.out.println("");
                     StartMenu();
@@ -360,6 +367,7 @@ public class Menu {
                 int choix2 = saisieUser.nextInt();
                 if (choix2 == 1) menuCreationPublic();
                 if (choix2 == 2){
+                    System.out.println("");
                     System.out.println("Retour au menu principal");
                     System.out.println("");
                     StartMenu();
@@ -368,7 +376,7 @@ public class Menu {
         }
     }
     
-    public void menuTournoi() {
+    public void menuTournoi() throws IOException{
         System.out.println("Attention, si vous voulez inscrire des joueurs, des spectateurs ou des arbitres faite le avant de lancer un tournoi dans les menus précédents");
         System.out.println("Que voulez vous faire ?");
         System.out.println("1) Lancer un tournoi");
@@ -379,8 +387,15 @@ public class Menu {
         switch (choix){
             case 1 -> {
                 Tournoi untournoi = new Tournoi(listeJoueur, listeArbitre, listeSpectateur);
-                System.out.println("Tournoi créer avec succès : 'Tournoi n°" + untournoi.getTournoiNumero());
+                System.out.println("Tournoi créer avec succès : Tournoi n°" + untournoi.getTournoiNumero());
+                untournoi.startTournoi();
                 untournoi.jouerPremierTour();
+                untournoi.jouerSecondTour();
+                untournoi.jouerSeizièmesDeFinale();
+                untournoi.jouerHuitièmesDeFinale();
+                untournoi.jouerQuartDeFinale();
+                untournoi.jouerDemiFinale();
+                untournoi.jouerFinale();
             }
         }
         

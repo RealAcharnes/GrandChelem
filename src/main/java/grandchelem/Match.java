@@ -36,20 +36,35 @@ public class Match {
         System.out.println(toString());
     }
     
-    public Joueur jouerMatch(){
-        Scanner saisieUtilisateur = new Scanner(System.in);
-        System.out.println("Veuillez indiquer si vous souhaitez jouer ce match de façon automatique (0) (default) ou bien manuelle (1)");
-        int input = saisieUtilisateur.nextInt();
-        int i=0;
-        while (!matchRemporte()){
-            int[] tab=jouerSet(input);
-            scores[i][0]=tab[0];
-            scores[i][1]=tab[1];
-            i++;
+    public Joueur jouerMatch(int mode){
+        if (mode == 0) {
+            int i = 0;
+            while (!matchRemporte()){
+                int[] tab=jouerSet(mode);
+                scores[i][0]=tab[0];
+                scores[i][1]=tab[1];
+                i++;
+            }
+            printScores();
+            System.out.println("Le gagnant est : " + gagnantMatch());
+            return gagnantMatch();
         }
-        printScores();
-        System.out.println("Le gagnant est : " + gagnantMatch());
-        return gagnantMatch();
+        else {
+            Scanner saisieUtilisateur = new Scanner(System.in);
+            System.out.println("Veuillez indiquer si vous souhaitez jouer ce match de façon automatique (0) (default) ou bien manuelle (1)");
+            int input = saisieUtilisateur.nextInt();
+            int i=0;
+            while (!matchRemporte()){
+                int[] tab=jouerSet(input);
+                scores[i][0]=tab[0];
+                scores[i][1]=tab[1];
+                i++;
+            }
+            printScores();
+            System.out.println("Le gagnant est : " + gagnantMatch());
+            return gagnantMatch();
+        }
+        
     }
     
     public int[] jouerSet(int mode){
