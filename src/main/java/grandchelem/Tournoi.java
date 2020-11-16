@@ -17,12 +17,12 @@ public class Tournoi {
     ArrayList<Joueur> listeJoueur;
     ArrayList<Arbitre> listeArbitre;
     ArrayList<Spectateur> listeSpectateur;
-    ArrayList<Joueur> secondTour = new ArrayList<Joueur>();
-    ArrayList<Joueur> seizièmeDeFinale = new ArrayList<Joueur>();
-    ArrayList<Joueur> huitièmeDeFinale = new ArrayList<Joueur>();
-    ArrayList<Joueur> quartDeFinale = new ArrayList<Joueur>();
-    ArrayList<Joueur> demiFinale = new ArrayList<Joueur>();
-    ArrayList<Joueur> finale = new ArrayList<Joueur>();
+    ArrayList<Joueur> secondTour = new ArrayList<>();
+    ArrayList<Joueur> seizièmeDeFinale = new ArrayList<>();
+    ArrayList<Joueur> huitièmeDeFinale = new ArrayList<>();
+    ArrayList<Joueur> quartDeFinale = new ArrayList<>();
+    ArrayList<Joueur> demiFinale = new ArrayList<>();
+    ArrayList<Joueur> finale = new ArrayList<>();
     Joueur gagnantTournoi;
     private static int compteurTournoi;
     int tournoiNumero;
@@ -84,12 +84,39 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int i = 0;
                 for (int j=0; j< 64; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre));
                     i += 2;
-                    this.secondTour.add(unmatch.jouerMatch(0));
+                    this.secondTour.add(unmatch.jouerMatch(0,choixDetail));
+                }
+                System.out.println("");
+                System.out.println("Liste des joueurs du second tour :");
+                for (int k = 0; k< this.secondTour.size(); k++){
+                    System.out.println(this.secondTour.get(k));
+                }
+                System.out.println("");
+                System.out.println("Voulez vous continuer vers le second tour ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers le second tour");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerSecondTour();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 1 ->{
+                int i = 0;
+                for (int j=0; j< 64; j++) {
+                    int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                    Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre));
+                    i += 2;
+                    this.secondTour.add(unmatch.jouerMatch(1,1));
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs du second tour :");
@@ -121,12 +148,39 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int i = 0;
                 for (int j=0; j< 32; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre));
                     i += 2;
-                    this.seizièmeDeFinale.add(unmatch.jouerMatch(0));
+                    this.seizièmeDeFinale.add(unmatch.jouerMatch(0,choixDetail));
+                }
+                System.out.println("");
+                System.out.println("Liste des joueurs des seizièmes de finale :");
+                for (int k = 0; k< this.seizièmeDeFinale.size(); k++){
+                    System.out.println(this.seizièmeDeFinale.get(k));
+                }
+                System.out.println("");
+                System.out.println("Voulez vous continuer vers les seizièmes de finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les seizièmes de finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerSeizièmesDeFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 1->{
+                int i = 0;
+                for (int j=0; j< 32; j++) {
+                    int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                    Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre));
+                    i += 2;
+                    this.seizièmeDeFinale.add(unmatch.jouerMatch(0,1));
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des seizièmes de finale :");
@@ -158,12 +212,39 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int i = 0;
                 for (int j=0; j< 16; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
                     i += 2;
-                    this.huitièmeDeFinale.add(unmatch.jouerMatch(0));
+                    this.huitièmeDeFinale.add(unmatch.jouerMatch(0,choixDetail));
+                }
+                System.out.println("");
+                System.out.println("Liste des joueurs des huitièmes de finale :");
+                for (int k = 0; k< this.huitièmeDeFinale.size(); k++){
+                    System.out.println(this.huitièmeDeFinale.get(k));
+                }
+                System.out.println("");
+                System.out.println("Voulez vous continuer vers les huitièmes de finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les huitièmes de finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerHuitièmesDeFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 1 ->{
+                int i = 0;
+                for (int j=0; j< 16; j++) {
+                    int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                    Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    i += 2;
+                    this.huitièmeDeFinale.add(unmatch.jouerMatch(0,1));
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des huitièmes de finale :");
@@ -195,12 +276,39 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int i = 0;
                 for (int j=0; j< 8; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
                     i += 2;
-                    this.quartDeFinale.add(unmatch.jouerMatch(0));
+                    this.quartDeFinale.add(unmatch.jouerMatch(0,choixDetail));
+                }
+                System.out.println("");
+                System.out.println("Liste des joueurs des quarts de finale :");
+                for (int k = 0; k< this.quartDeFinale.size(); k++){
+                    System.out.println(this.quartDeFinale.get(k));
+                }
+                System.out.println("");
+                System.out.println("Voulez vous continuer vers les quarts de finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les quarts de finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerQuartDeFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 1 ->{
+                int i = 0;
+                for (int j=0; j< 8; j++) {
+                    int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                    Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    i += 2;
+                    this.quartDeFinale.add(unmatch.jouerMatch(0,1));
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des quarts de finale :");
@@ -232,12 +340,39 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int i = 0;
                 for (int j=0; j< 4; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
                     i += 2;
-                    this.demiFinale.add(unmatch.jouerMatch(0));
+                    this.demiFinale.add(unmatch.jouerMatch(0,choixDetail));
+                }
+                System.out.println("");
+                System.out.println("Liste des joueurs de la demi finale :");
+                for (int k = 0; k< this.demiFinale.size(); k++){
+                    System.out.println(this.demiFinale.get(k));
+                }
+                System.out.println("");
+                System.out.println("Voulez vous continuer vers les demi finales ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les demi finales");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerDemiFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 1 ->{
+                int i = 0;
+                for (int j=0; j< 4; j++) {
+                    int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                    Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    i += 2;
+                    this.demiFinale.add(unmatch.jouerMatch(0,1));
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs de la demi finale :");
@@ -269,12 +404,39 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int i = 0;
                 for (int j=0; j< 2; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre));
                     i += 2;
-                    this.finale.add(unmatch.jouerMatch(0));
+                    this.finale.add(unmatch.jouerMatch(0,choixDetail));
+                }
+                System.out.println("");
+                System.out.println("Liste des joueurs de la finale :");
+                for (int k = 0; k< this.finale.size(); k++){
+                    System.out.println(this.finale.get(k));
+                }
+                System.out.println("");
+                System.out.println("Voulez vous continuer vers la finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers la finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 1 ->{
+                int i = 0;
+                for (int j=0; j< 2; j++) {
+                    int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                    Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    i += 2;
+                    this.finale.add(unmatch.jouerMatch(0,1));
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs de la finale :");
@@ -306,9 +468,24 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
+                System.out.println("0) Résultats uniquement");
+                System.out.println("1) Détail");
+                Scanner saisieUserDetail = new Scanner(System.in);
+                int choixDetail = saisieUserDetail.nextInt();
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                 Match unmatch = new Match(this.demiFinale.get(0), this.demiFinale.get(1), this.listeArbitre.get(randomArbitre));
-                this.gagnantTournoi = unmatch.jouerMatch(0);
+                this.gagnantTournoi = unmatch.jouerMatch(0,choixDetail);
+                System.out.println("");
+                System.out.println("Le gagnant du tournoi est : " + this.gagnantTournoi + " Bravo !!!");
+                System.out.println("");
+                System.out.println("Retour au menu Tournoi");
+                Menu.menuTournoi();
+            }
+            case 1 ->{
+                int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
+                Match unmatch = new Match(this.demiFinale.get(0), this.demiFinale.get(1), this.listeArbitre.get(randomArbitre));
+                this.gagnantTournoi = unmatch.jouerMatch(0,1);
                 System.out.println("");
                 System.out.println("Le gagnant du tournoi est : " + this.gagnantTournoi + " Bravo !!!");
                 System.out.println("");

@@ -404,7 +404,7 @@ public class Menu {
                 Scanner saisieUser3 = new Scanner(System.in);
                 int choixGenreTournoi = saisieUser3.nextInt();
                 if (choixGenreTournoi == 1){
-                    ArrayList<Joueur> listeTempJoueur = new ArrayList<Joueur>();
+                    ArrayList<Joueur> listeTempJoueur = new ArrayList<>();
                     for (int i=0; i<listeJoueur.size(); i++){
                         if (listeJoueur.get(i).genre == Genre.HOMME){
                             listeTempJoueur.add(listeJoueur.get(i));
@@ -421,7 +421,7 @@ public class Menu {
                     untournoi.jouerPremierTour();
                 }
                 if (choixGenreTournoi == 2){
-                    ArrayList<Joueur> listeTempJoueuse = new ArrayList<Joueur>();
+                    ArrayList<Joueur> listeTempJoueuse = new ArrayList<>();
                     for (int i=0; i<listeJoueur.size(); i++){
                         if (listeJoueur.get(i).genre == Genre.FEMME){
                             listeTempJoueuse.add(listeJoueur.get(i));

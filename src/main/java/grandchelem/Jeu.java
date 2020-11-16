@@ -20,7 +20,7 @@ public class Jeu {
         this.arbitre=arbitre;
     }
     
-    public Joueur jouerEchange(int serveur, int mode){
+    public Joueur jouerEchange(int serveur, int mode, int affichage){
         Echange echange = new Echange(joueur1, joueur2, serveur);
         this.serveur = serveur;
         int premierService = echange.premierService(mode);
@@ -51,7 +51,9 @@ public class Jeu {
             }
         }
         if (Math.random() < 0.15){
-            System.out.println(echange.gagnantEchange + " a gagné l'échange, mais un litige a été demandé.");
+            if(affichage==1){
+                System.out.println(echange.gagnantEchange + " a gagné l'échange, mais un litige a été demandé.");
+            }
             if (Math.random() < arbitre.getHumeur()) {
                 if (echange.gagnantEchange == joueur1){
                     echange.gagnantEchange = joueur2;
@@ -59,14 +61,20 @@ public class Jeu {
                 else{
                     echange.gagnantEchange = joueur1;
                 }
-                System.out.println("Le point est accordé à " + echange.gagnantEchange + " qui a demandé le litige.");
+                if(affichage==1){
+                    System.out.println("Le point est accordé à " + echange.gagnantEchange + " qui a demandé le litige.");
+                }
             }
             else {
-                System.out.println("L'arbitre reste sur sa première décision, " + echange.gagnantEchange + " gagne le point");
+                if(affichage==1){
+                    System.out.println("L'arbitre reste sur sa première décision, " + echange.gagnantEchange + " gagne le point");
+                }   
             }
         }
         pointRemporte(echange.gagnantEchange);
-        System.out.println("Points : " + toString());
+        if(affichage==1){
+            System.out.println("Points : " + toString());
+        }      
         return echange.gagnantEchange;
     }
     
@@ -118,10 +126,38 @@ public class Jeu {
     @Override
     public String toString() {
         if (serveur == 1) {
-            return joueur1 + " " + pointsJoueur1 + " , " + pointsJoueur2 + " " + joueur2 ;
+            if (pointsJoueur1 == 45){
+                return joueur1 + " " + "Av" + " , " + pointsJoueur2 + " " + joueur2;
+            }
+            else if (pointsJoueur2 == 45){
+                return joueur1 + " " + pointsJoueur1 + " , " + "Av" + " " + joueur2;
+            }
+            else if (pointsJoueur1 == 50){
+                return joueur1 + " " + "Ga" + " , " + pointsJoueur2 + " " + joueur2;
+            }
+            else if (pointsJoueur2 == 50){
+                return joueur1 + " " + pointsJoueur1 + " , " + "Ga" + " " + joueur2;
+            }
+            else{
+                return joueur1 + " " + pointsJoueur1 + " , " + pointsJoueur2 + " " + joueur2;
+            }
         }
         else{
-            return joueur2 + " " + pointsJoueur2 + " , " + pointsJoueur1 + " " + joueur1 ;
+            if (pointsJoueur2 == 45){
+                return joueur2 + " " + "Av" + " , " + pointsJoueur1 + " " + joueur1;
+            }
+            else if (pointsJoueur1 == 45){
+                return joueur2 + " " + pointsJoueur2 + " , " + "Av" + " " + joueur1;
+            }
+            else if (pointsJoueur2 == 50){
+                return joueur2 + " " + "Ga" + " , " + pointsJoueur1 + " " + joueur1;
+            }
+            else if (pointsJoueur1 == 50){
+                return joueur2 + " " + pointsJoueur2 + " , " + "Ga" + " " + joueur1;
+            }
+            else{
+                return joueur2 + " " + pointsJoueur2 + " , " + pointsJoueur1 + " " + joueur1;
+            }
         }
     }
     

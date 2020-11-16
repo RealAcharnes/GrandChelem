@@ -20,7 +20,7 @@ public class Set {
         this.arbitre=arbitre;
     }
     
-    public Joueur jouerJeu(int serveur, int mode){
+    public Joueur jouerJeu(int serveur, int mode, int affichage){
         if (mode==1){
             Scanner saisieUtilisateur = new Scanner(System.in);
             System.out.println("Veuillez indiquer si vous souhaitez jouer ce jeu de façon automatique (0) (default) ou bien manuelle (1)");
@@ -29,7 +29,7 @@ public class Set {
         }
         Jeu jeu = new Jeu(joueur1, joueur2, arbitre);
         while (!jeu.jeuRemporte()){
-            jeu.jouerEchange(serveur, mode);
+            jeu.jouerEchange(serveur, mode, affichage);
         }
         return jeu.gagnantJeu();  
     }

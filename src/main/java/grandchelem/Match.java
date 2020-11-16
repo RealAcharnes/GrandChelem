@@ -36,11 +36,11 @@ public class Match {
         System.out.println(toString());
     }
     
-    public Joueur jouerMatch(int mode){
+    public Joueur jouerMatch(int mode, int affichage){
         if (mode == 0) {
             int i = 0;
             while (!matchRemporte()){
-                int[] tab=jouerSet(mode);
+                int[] tab=jouerSet(mode, affichage);
                 scores[i][0]=tab[0];
                 scores[i][1]=tab[1];
                 i++;
@@ -55,7 +55,7 @@ public class Match {
             int input = saisieUtilisateur.nextInt();
             int i=0;
             while (!matchRemporte()){
-                int[] tab=jouerSet(input);
+                int[] tab=jouerSet(input,1);
                 scores[i][0]=tab[0];
                 scores[i][1]=tab[1];
                 i++;
@@ -67,7 +67,7 @@ public class Match {
         
     }
     
-    public int[] jouerSet(int mode){
+    public int[] jouerSet(int mode, int affichage){
         if (mode==1){
             Scanner saisieUtilisateur = new Scanner(System.in);
             System.out.println("Veuillez indiquer si vous souhaitez jouer ce set de façon automatique (0) (default) ou bien manuelle (1)");
@@ -83,14 +83,16 @@ public class Match {
         }
         Set set = new Set(joueur1, joueur2, arbitre);
         while (!set.setRemporte()){
-            set.jeuRemporte(set.jouerJeu(serveur, mode));
+            set.jeuRemporte(set.jouerJeu(serveur, mode, affichage));
             if (serveur==1){
                 serveur=2;
             }
             else{
                 serveur=1;
             }
-            System.out.println("Jeux : " + set.toString());
+            if(affichage==1){
+                System.out.println("Jeux : " + set.toString());
+            }  
         }
         int[] tab = new int[2];
         tab[0]=set.jeuxJoueur1;
