@@ -26,6 +26,7 @@ public class Tournoi {
     Joueur gagnantTournoi;
     private static int compteurTournoi;
     int tournoiNumero;
+    int etatTournoi;
     
     public Tournoi(ArrayList<Joueur> listeJoueur, ArrayList<Arbitre> listeArbitre, ArrayList<Spectateur> listeSpectateur){
         this.listeJoueur = listeJoueur;
@@ -73,10 +74,12 @@ public class Tournoi {
         return this.listeSpectateur;
     }
     
-    public ArrayList<Joueur> jouerPremierTour(){
+    public void jouerPremierTour() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous jouer le premier tour de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -94,16 +97,26 @@ public class Tournoi {
                     System.out.println(this.secondTour.get(k));
                 }
                 System.out.println("");
-                return this.secondTour;
-            }  
+                System.out.println("Voulez vous continuer vers le second tour ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers le second tour");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerSecondTour();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.secondTour;
     }
     
-    public ArrayList<Joueur> jouerSecondTour(){
+    public void jouerSecondTour() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous jouer le second tour de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -121,16 +134,26 @@ public class Tournoi {
                     System.out.println(this.seizièmeDeFinale.get(k));
                 }
                 System.out.println("");
-                return this.seizièmeDeFinale;
-            }  
+                System.out.println("Voulez vous continuer vers les seizièmes de finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les seizièmes de finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerSeizièmesDeFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.seizièmeDeFinale;
     }
     
-    public ArrayList<Joueur> jouerSeizièmesDeFinale(){
+    public void jouerSeizièmesDeFinale() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous jouer les seizièmes de finale de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -148,16 +171,26 @@ public class Tournoi {
                     System.out.println(this.huitièmeDeFinale.get(k));
                 }
                 System.out.println("");
-                return this.huitièmeDeFinale;
-            }  
+                System.out.println("Voulez vous continuer vers les huitièmes de finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les huitièmes de finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerHuitièmesDeFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.huitièmeDeFinale;
     }
     
-    public ArrayList<Joueur> jouerHuitièmesDeFinale(){
+    public void jouerHuitièmesDeFinale() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous jouer les huitièmes de finale de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -175,16 +208,26 @@ public class Tournoi {
                     System.out.println(this.quartDeFinale.get(k));
                 }
                 System.out.println("");
-                return this.quartDeFinale;
-            }  
+                System.out.println("Voulez vous continuer vers les quarts de finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les quarts de finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerQuartDeFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.quartDeFinale;
     }
     
-    public ArrayList<Joueur> jouerQuartDeFinale(){
-        System.out.println("Voulez-vous jouer la quart de finale de façon manuel ou automatique ?");
+    public void jouerQuartDeFinale() throws IOException{
+        System.out.println("");
+        System.out.println("Voulez-vous jouer les quarts de finale de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -202,16 +245,26 @@ public class Tournoi {
                     System.out.println(this.demiFinale.get(k));
                 }
                 System.out.println("");
-                return this.demiFinale;
-            }  
+                System.out.println("Voulez vous continuer vers les demi finales ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers les demi finales");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerDemiFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.demiFinale;
     }
     
-    public ArrayList<Joueur> jouerDemiFinale(){
+    public void jouerDemiFinale() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous jouer la demi finale de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -229,16 +282,26 @@ public class Tournoi {
                     System.out.println(this.finale.get(k));
                 }
                 System.out.println("");
-                return this.finale;
-            }  
+                System.out.println("Voulez vous continuer vers la finale ou retourner au menu Tournoi ?");
+                System.out.println("1) Continuer vers la finale");
+                System.out.println("2) Retourner au menu Tournoi");
+                Scanner saisieUser2 = new Scanner(System.in);
+                int choix2 = saisieUser2.nextInt();
+                if (choix2 == 1) this.jouerFinale();
+                if (choix2 == 2) Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.finale;
     }
     
-    public Joueur jouerFinale(){
+    public void jouerFinale()throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous jouer la finale de façon manuel ou automatique ?");
         System.out.println("0) Automatique");
         System.out.println("1) Manuel (vous aurez encore l'option de choisir pour chaque match)");
+        System.out.println("2) Retourner au menu Tournoi");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -249,25 +312,14 @@ public class Tournoi {
                 System.out.println("");
                 System.out.println("Le gagnant du tournoi est : " + this.gagnantTournoi + " Bravo !!!");
                 System.out.println("");
-                return this.gagnantTournoi;
-            }  
+                System.out.println("Retour au menu Tournoi");
+                Menu.menuTournoi();
+            }
+            case 2 ->{
+                Menu.menuTournoi();
+            }
         }
-        return this.gagnantTournoi;
     }
-    
-    /*
-    public ArrayList<Joueur> jouerPremierTour(){
-        System.out.println("test2");
-        ArrayList<Joueur> secondTour = new ArrayList<>();
-        System.out.println(listeJoueur.size());
-        for (int i=0 ; i<listeJoueur.size()-1 ; i=i+2){
-            Match match = new Match(listeJoueur.get(i),listeJoueur.get(i+1),listeArbitre.get(1));
-            secondTour.add(match.jouerMatch());
-            System.out.println("test");
-        }
-        return secondTour;
-    }
-    */
     
     public void startTournoi() throws IOException{
         genererJoueursTournoi();
@@ -275,8 +327,21 @@ public class Tournoi {
         genererSpectateursTournoi();         
     }
     
-    public int getTournoiNumero (){
+    //Accessors
+    public int getTournoiNumero(){
         return this.tournoiNumero;
+    }
+    
+    public ArrayList<Joueur> getListeJoueur(){
+        return this.listeJoueur;
+    }
+    
+    public ArrayList<Arbitre> getListeArbitre(){
+        return this.listeArbitre;
+    }
+    
+    public ArrayList<Spectateur> getListeSpectateur(){
+        return this.listeSpectateur;
     }
     
 }

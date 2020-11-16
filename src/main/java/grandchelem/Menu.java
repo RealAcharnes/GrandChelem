@@ -17,10 +17,10 @@ import java.util.ArrayList;
  */
 public class Menu {
     
-    ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
-    ArrayList<Arbitre> listeArbitre = new ArrayList<Arbitre>();
-    ArrayList<Spectateur> listeSpectateur = new ArrayList<Spectateur>();
-    ArrayList<Tournoi> listeTournoi = new ArrayList<Tournoi>();
+    static ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
+    static ArrayList<Arbitre> listeArbitre = new ArrayList<Arbitre>();
+    static ArrayList<Spectateur> listeSpectateur = new ArrayList<Spectateur>();
+    static ArrayList<Tournoi> listeTournoi = new ArrayList<Tournoi>();
     
     
     public Menu(){
@@ -31,10 +31,12 @@ public class Menu {
         System.out.println("");
     }
     
-    public void StartMenu() throws IOException {
+    public static int StartMenu() throws IOException {
+        System.out.println("");
         System.out.println("Que souhaitez-vous faire ?");
         System.out.println("1) Créer une personne");
         System.out.println("2) Tournoi");
+        System.out.println("3) Quitter");
         Scanner saisieUser = new Scanner(System.in);
         int choix = saisieUser.nextInt();
         switch (choix){
@@ -44,10 +46,15 @@ public class Menu {
             case 2 -> {
                 menuTournoi();
             }
-        }  
+            case 3 -> {
+                return 1;
+            }
+        }
+        return 1;
     }
     
-    public void menuCreation() throws IOException {
+    public static void menuCreation() throws IOException {
+        System.out.println("");
         System.out.println("Quelle personne voulez-vous créer ?");
         System.out.println("1) Un joueur");
         System.out.println("2) Un arbitre");
@@ -178,7 +185,8 @@ public class Menu {
         }
     }
     
-    public void menuCreationJoueur() throws IOException {
+    public static void menuCreationJoueur() throws IOException {
+        System.out.println("");
         System.out.println("Voulez-vous créer un joueur de facon automatique ou manuel ?");
         System.out.println("1) Automatique");
         System.out.println("2) Manuel");
@@ -250,7 +258,8 @@ public class Menu {
         }
     }
     
-    public void menuCreationArbitre() throws IOException{
+    public static void menuCreationArbitre() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous créer un arbitre de facon automatique ou manuel ?");
         System.out.println("1) Automatique");
         System.out.println("2) Manuel");
@@ -313,7 +322,8 @@ public class Menu {
         }
     }
     
-    public void menuCreationPublic() throws IOException{
+    public static void menuCreationPublic() throws IOException{
+        System.out.println("");
         System.out.println("Voulez-vous créer une personne du public de facon automatique ou manuel ?");
         System.out.println("1) Automatique");
         System.out.println("2) Manuel");
@@ -376,7 +386,8 @@ public class Menu {
         }
     }
     
-    public void menuTournoi() throws IOException{
+    public static void menuTournoi() throws IOException{
+        System.out.println("");
         System.out.println("Attention, si vous voulez inscrire des joueurs, des spectateurs ou des arbitres faite le avant de lancer un tournoi dans les menus précédents");
         System.out.println("Que voulez vous faire ?");
         System.out.println("1) Lancer un tournoi");
@@ -386,19 +397,144 @@ public class Menu {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 1 -> {
-                Tournoi untournoi = new Tournoi(listeJoueur, listeArbitre, listeSpectateur);
-                System.out.println("Tournoi créer avec succès : Tournoi n°" + untournoi.getTournoiNumero());
-                untournoi.startTournoi();
-                untournoi.jouerPremierTour();
-                untournoi.jouerSecondTour();
-                untournoi.jouerSeizièmesDeFinale();
-                untournoi.jouerHuitièmesDeFinale();
-                untournoi.jouerQuartDeFinale();
-                untournoi.jouerDemiFinale();
-                untournoi.jouerFinale();
+                System.out.println("");
+                System.out.println("Voulez vous créer un tournoi masculin ou féminin ?");
+                System.out.println("1) Masculin");
+                System.out.println("2) Féminin");
+                Scanner saisieUser3 = new Scanner(System.in);
+                int choixGenreTournoi = saisieUser3.nextInt();
+                if (choixGenreTournoi == 1){
+                    ArrayList<Joueur> listeTempJoueur = new ArrayList<Joueur>();
+                    for (int i=0; i<listeJoueur.size(); i++){
+                        if (listeJoueur.get(i).genre == Genre.HOMME){
+                            listeTempJoueur.add(listeJoueur.get(i));
+                        }
+                    }
+                    Tournoi untournoi = new Tournoi(listeTempJoueur, listeArbitre, listeSpectateur);
+                    listeTournoi.add(untournoi);
+                    listeJoueur.clear();
+                    listeArbitre.clear();
+                    listeSpectateur.clear();
+                    System.out.println("");
+                    System.out.println("Tournoi masculin créer avec succès : Tournoi n°" + untournoi.getTournoiNumero());
+                    untournoi.startTournoi();
+                    untournoi.jouerPremierTour();
+                }
+                if (choixGenreTournoi == 2){
+                    ArrayList<Joueur> listeTempJoueuse = new ArrayList<Joueur>();
+                    for (int i=0; i<listeJoueur.size(); i++){
+                        if (listeJoueur.get(i).genre == Genre.FEMME){
+                            listeTempJoueuse.add(listeJoueur.get(i));
+                        }
+                    }
+                    Tournoi untournoi = new Tournoi(listeTempJoueuse, listeArbitre, listeSpectateur);
+                    listeTournoi.add(untournoi);
+                    listeJoueur.clear();
+                    listeArbitre.clear();
+                    listeSpectateur.clear();
+                    System.out.println("");
+                    System.out.println("Tournoi féminin créer avec succès : Tournoi n°" + untournoi.getTournoiNumero());
+                    untournoi.startTournoi();
+                    untournoi.jouerPremierTour();
+                }
+            }
+            case 2 -> {
+                System.out.println("");
+                if (listeTournoi.isEmpty()){
+                    System.out.println("/!\\ /!\\ /!\\ Désolé, aucun tournoi n'a encore débuté. /!\\ /!\\ /!\\");
+                    menuTournoi();
+                }
+                else{
+                    System.out.println("------ Veuillez choisir le tournoi qui vous intéresse : ------");
+                    for (int i = 0; i< listeTournoi.size(); i++){
+                        System.out.println(listeTournoi.get(i).getTournoiNumero() + ") Tournoi n°" + listeTournoi.get(i).getTournoiNumero());
+                    }
+                    Scanner saisieUser2 = new Scanner(System.in);
+                    int choix2 = saisieUser2.nextInt();
+                    menuInfo(choix2);
+                } 
+            }
+            case 3 -> {
+                StartMenu();
             }
         }
         
+    }
+    
+    public static void menuInfo(int numeroTournoi) throws IOException{
+        System.out.println("");
+        System.out.println("------ Menu informations ------ ");
+        System.out.println("1) Informations joueurs");
+        System.out.println("2) Informations arbitres");
+        System.out.println("3) Informations spectateurs");
+        System.out.println("4) Retour");
+        Scanner saisieUser = new Scanner(System.in);
+        int choix = saisieUser.nextInt();
+        switch (choix){
+            case 1 -> {
+                menuInfoJoueur(numeroTournoi);
+            }
+            case 2 -> {
+                menuInfoArbitre(numeroTournoi);
+            }
+            case 3 -> {
+                menuInfoSpectateur(numeroTournoi);
+            }
+            case 4 -> {
+                menuTournoi();
+            }
+        }
+    }
+    
+    public static void menuInfoJoueur(int numeroTournoi) throws IOException{
+        System.out.println("");
+        Tournoi leTournoi = listeTournoi.get(numeroTournoi-1);
+        for (int i = 0; i< leTournoi.listeJoueur.size(); i++){
+            System.out.println(leTournoi.listeJoueur.get(i));
+        }
+        System.out.println("");
+        System.out.println("1) Retour");
+        Scanner saisieUser = new Scanner(System.in);
+        int choix = saisieUser.nextInt();
+        switch (choix){
+            case 1 -> {
+                menuInfo(numeroTournoi);
+            }
+        }
+    }
+    
+    public static void menuInfoArbitre(int numeroTournoi) throws IOException{
+        System.out.println("");
+        Tournoi leTournoi = listeTournoi.get(numeroTournoi-1);
+        for (int i = 0; i< leTournoi.listeArbitre.size(); i++){
+            System.out.println(leTournoi.listeArbitre.get(i));
+        }
+        System.out.println("");
+        System.out.println("1) Retour");
+        Scanner saisieUser = new Scanner(System.in);
+        int choix = saisieUser.nextInt();
+        switch (choix){
+            case 1 -> {
+                menuInfo(numeroTournoi);
+            }
+        }
+    }
+    
+    public static void menuInfoSpectateur(int numeroTournoi) throws IOException{
+        System.out.println("");
+        Tournoi leTournoi = listeTournoi.get(numeroTournoi-1);
+        for (int i = 0; i< leTournoi.listeSpectateur.size(); i++){
+            System.out.println(leTournoi.listeSpectateur.get(i));
+        }
+        System.out.println("");
+        System.out.println("1) Retour");
+        Scanner saisieUser = new Scanner(System.in);
+        int choix = saisieUser.nextInt();
+        switch (choix){
+            case 1 -> {
+                menuInfo(numeroTournoi);
+            }
+        }
     }
     
 }

@@ -25,8 +25,7 @@ public class Tennis {
         match.jouerMatch();*/
         
         //TestReadingFile.readCsv();
-        Menu menu = new Menu();
-        menu.StartMenu();
+        Menu.StartMenu();
         
     }
     
