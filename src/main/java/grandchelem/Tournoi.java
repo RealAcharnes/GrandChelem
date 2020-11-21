@@ -26,12 +26,14 @@ public class Tournoi {
     Joueur gagnantTournoi;
     private static int compteurTournoi;
     int tournoiNumero;
-    int etatTournoi;
+    int etatTournoi;    //Nombre entre 0 et 7 illustrant l'avancé d'un tournoi (ex: 7, le tournoi est terminé.
+    int genreTournoi; //1 --> Tournoi masculin  2 --> Tournoi Féminin
     
-    public Tournoi(ArrayList<Joueur> listeJoueur, ArrayList<Arbitre> listeArbitre, ArrayList<Spectateur> listeSpectateur){
+    public Tournoi(ArrayList<Joueur> listeJoueur, ArrayList<Arbitre> listeArbitre, ArrayList<Spectateur> listeSpectateur, int genreTournoi){
         this.listeJoueur = listeJoueur;
         this.listeArbitre = listeArbitre;
         this.listeSpectateur = listeSpectateur;
+        this.genreTournoi = genreTournoi;
         compteurTournoi++;
         this.tournoiNumero = compteurTournoi;
         
@@ -40,7 +42,7 @@ public class Tournoi {
     //Un tournoi comporte 128 joueurs, disons qu'il comporte 25 arbitres.
     public ArrayList<Joueur> genererJoueursTournoi() throws IOException{
         while (this.listeJoueur.size() != 128) {
-            Joueur unjoueur = Menu.creationAutomatiqueJoueur();
+            Joueur unjoueur = Menu.creationAutomatiqueJoueur(this.genreTournoi);
             this.listeJoueur.add(unjoueur);
         }
         System.out.println("Joueurs crées avec succès");
@@ -84,6 +86,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -93,8 +96,10 @@ public class Tournoi {
                 for (int j=0; j< 64; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.secondTour.add(unmatch.jouerMatch(0,choixDetail));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs du second tour :");
@@ -115,8 +120,10 @@ public class Tournoi {
                 for (int j=0; j< 64; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.secondTour.add(unmatch.jouerMatch(1,1));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs du second tour :");
@@ -133,6 +140,7 @@ public class Tournoi {
                 if (choix2 == 2) Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 0;
                 Menu.menuTournoi();
             }
         }
@@ -148,6 +156,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -157,8 +166,10 @@ public class Tournoi {
                 for (int j=0; j< 32; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.seizièmeDeFinale.add(unmatch.jouerMatch(0,choixDetail));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des seizièmes de finale :");
@@ -179,8 +190,10 @@ public class Tournoi {
                 for (int j=0; j< 32; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.seizièmeDeFinale.add(unmatch.jouerMatch(0,1));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des seizièmes de finale :");
@@ -197,6 +210,7 @@ public class Tournoi {
                 if (choix2 == 2) Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 1;
                 Menu.menuTournoi();
             }
         }
@@ -212,6 +226,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -221,8 +236,10 @@ public class Tournoi {
                 for (int j=0; j< 16; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.huitièmeDeFinale.add(unmatch.jouerMatch(0,choixDetail));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des huitièmes de finale :");
@@ -243,8 +260,10 @@ public class Tournoi {
                 for (int j=0; j< 16; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.huitièmeDeFinale.add(unmatch.jouerMatch(0,1));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des huitièmes de finale :");
@@ -261,6 +280,7 @@ public class Tournoi {
                 if (choix2 == 2) Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 2;
                 Menu.menuTournoi();
             }
         }
@@ -276,6 +296,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -285,8 +306,10 @@ public class Tournoi {
                 for (int j=0; j< 8; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.quartDeFinale.add(unmatch.jouerMatch(0,choixDetail));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des quarts de finale :");
@@ -307,8 +330,10 @@ public class Tournoi {
                 for (int j=0; j< 8; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.quartDeFinale.add(unmatch.jouerMatch(0,1));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs des quarts de finale :");
@@ -325,6 +350,7 @@ public class Tournoi {
                 if (choix2 == 2) Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 3;
                 Menu.menuTournoi();
             }
         }
@@ -340,6 +366,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -349,8 +376,10 @@ public class Tournoi {
                 for (int j=0; j< 4; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.demiFinale.add(unmatch.jouerMatch(0,choixDetail));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs de la demi finale :");
@@ -371,8 +400,10 @@ public class Tournoi {
                 for (int j=0; j< 4; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.demiFinale.add(unmatch.jouerMatch(0,1));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs de la demi finale :");
@@ -389,6 +420,7 @@ public class Tournoi {
                 if (choix2 == 2) Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 4;
                 Menu.menuTournoi();
             }
         }
@@ -404,6 +436,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -413,8 +446,10 @@ public class Tournoi {
                 for (int j=0; j< 2; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.finale.add(unmatch.jouerMatch(0,choixDetail));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs de la finale :");
@@ -435,8 +470,10 @@ public class Tournoi {
                 for (int j=0; j< 2; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                     Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre));
-                    i += 2;
                     this.finale.add(unmatch.jouerMatch(0,1));
+                    this.listeJoueur.get(i).listeMatch.add(unmatch);
+                    this.listeJoueur.get(i+1).listeMatch.add(unmatch);
+                    i += 2;
                 }
                 System.out.println("");
                 System.out.println("Liste des joueurs de la finale :");
@@ -453,6 +490,7 @@ public class Tournoi {
                 if (choix2 == 2) Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 5;
                 Menu.menuTournoi();
             }
         }
@@ -468,6 +506,7 @@ public class Tournoi {
         int choix = saisieUser.nextInt();
         switch (choix){
             case 0 -> {
+                System.out.println("");
                 System.out.println("Voulez-vous avoir le détail point par point ou uniquement le résultat des matchs ?");
                 System.out.println("0) Résultats uniquement");
                 System.out.println("1) Détail");
@@ -476,6 +515,8 @@ public class Tournoi {
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                 Match unmatch = new Match(this.demiFinale.get(0), this.demiFinale.get(1), this.listeArbitre.get(randomArbitre));
                 this.gagnantTournoi = unmatch.jouerMatch(0,choixDetail);
+                this.listeJoueur.get(0).listeMatch.add(unmatch);
+                this.listeJoueur.get(1).listeMatch.add(unmatch);
                 System.out.println("");
                 System.out.println("Le gagnant du tournoi est : " + this.gagnantTournoi + " Bravo !!!");
                 System.out.println("");
@@ -486,13 +527,17 @@ public class Tournoi {
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
                 Match unmatch = new Match(this.demiFinale.get(0), this.demiFinale.get(1), this.listeArbitre.get(randomArbitre));
                 this.gagnantTournoi = unmatch.jouerMatch(0,1);
+                this.listeJoueur.get(0).listeMatch.add(unmatch);
+                this.listeJoueur.get(1).listeMatch.add(unmatch);
                 System.out.println("");
                 System.out.println("Le gagnant du tournoi est : " + this.gagnantTournoi + " Bravo !!!");
                 System.out.println("");
                 System.out.println("Retour au menu Tournoi");
+                this.etatTournoi = 7;
                 Menu.menuTournoi();
             }
             case 2 ->{
+                this.etatTournoi = 6;
                 Menu.menuTournoi();
             }
         }
@@ -502,6 +547,22 @@ public class Tournoi {
         genererJoueursTournoi();
         genererArbitresTournoi();
         genererSpectateursTournoi();         
+    }
+    
+    public void reprendreTournoi(int etatTournoi) throws IOException{
+        switch (etatTournoi) {
+            case 0 -> {jouerPremierTour();}
+            case 1 -> {jouerSecondTour();}
+            case 2 -> {jouerSeizièmesDeFinale();}
+            case 3 -> {jouerHuitièmesDeFinale();}
+            case 4 -> {jouerQuartDeFinale();}
+            case 5 -> {jouerDemiFinale();}
+            case 6 -> {jouerFinale();}
+            case 7 -> {
+                System.out.println("Ce tournoi est terminé, vous pouvez tout de même aller voir ses informations dans le menu tournoi.");
+                Menu.menuTournoi();
+            }
+        }
     }
     
     //Accessors

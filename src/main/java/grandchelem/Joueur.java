@@ -5,6 +5,8 @@
  */
 package grandchelem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jeanc
@@ -17,6 +19,7 @@ public class Joueur extends Personne {
     final Habits habit;
     private Couleur couleurShort;
     private static int compteurJoueur;
+    ArrayList<Match> listeMatch = new ArrayList<Match>();
         
     public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, String entraineur, String nationalite){
         super(genre, nomNaissance, prenom);
@@ -49,6 +52,9 @@ public class Joueur extends Personne {
     }
     public Couleur getCouleurShort(){
         return this.couleurShort;
+    }
+    public ArrayList<Match> getListeMatch(){
+        return this.listeMatch;
     }
     //Mutator
     public void setSponsor(String sponsor){

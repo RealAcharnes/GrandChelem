@@ -153,5 +153,8 @@ public class Match {
         return "Le match opposera " + joueur1 + " qui commencera à servir, et " + joueur2 + ". Il sera arbitré par " + arbitre + '.';
     }
     
+    public int[][] getScore(){
+        return this.scores;
+    }
     
 }
