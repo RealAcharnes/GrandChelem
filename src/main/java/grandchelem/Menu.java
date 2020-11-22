@@ -1177,14 +1177,4 @@ public class Menu {
             }
         } 
     }
-    
-    public static void menuInfoArbitre(int numeroTournoi, int numeroArbitre){
-        
-    }
-    
-    public static void menuInfoSpectateur(int numeroTournoi, int numeroSpectateur){
-        
-    }
-    
-    
 }
