@@ -39,9 +39,10 @@ public class Match {
             this.joueur2=joueur1;
         }
         this.arbitre=arbitre;
+
         this.sexe=sexe;
-        setJoueur2=0;
-        setJoueur1=0;
+        this.setJoueur2=0;
+        this.setJoueur1=0;
         if (sexe==2){
             scores=new int[3][2];
         }
@@ -63,8 +64,8 @@ public class Match {
             int i = 0;
             while (!matchRemporte()){
                 int[] tab=jouerSet(mode, affichage);
-                scores[i][0]=tab[0];
-                scores[i][1]=tab[1];
+                this.scores[i][0]=tab[0];
+                this.scores[i][1]=tab[1];
                 i++;
             }
             printScores();
@@ -78,8 +79,8 @@ public class Match {
             int i=0;
             while (!matchRemporte()){
                 int[] tab=jouerSet(input,1);
-                scores[i][0]=tab[0];
-                scores[i][1]=tab[1];
+                this.scores[i][0]=tab[0];
+                this.scores[i][1]=tab[1];
                 i++;
             }
             printScores();
@@ -104,13 +105,13 @@ public class Match {
             mode=input;
         }    
         int serveur;
-        if (setJoueur1+setJoueur2%2==0){
+        if (this.setJoueur1+this.setJoueur2%2==0){
             serveur=1;
         }
         else{
             serveur=2;
         }
-        Set set = new Set(joueur1, joueur2, arbitre);
+        Set set = new Set(this.joueur1, this.joueur2, this.arbitre);
         while (!set.setRemporte()){
             set.jeuRemporte(set.jouerJeu(serveur, mode, affichage));
             if (serveur==1){
@@ -137,10 +138,10 @@ public class Match {
     
     public void setGagne(Joueur gagnant){
         if (gagnant==joueur1){
-            setJoueur1++;
+            this.setJoueur1++;
         }
         else{
-            setJoueur2++;
+            this.setJoueur2++;
         }
     }
     
@@ -150,6 +151,7 @@ public class Match {
      */
     
     public boolean matchRemporte(){
+
         if(sexe==2){
             return setJoueur1 == 2 || setJoueur2 == 2;
         }
@@ -164,10 +166,10 @@ public class Match {
      */
     
     public Joueur gagnantMatch(){
-        if (setJoueur1>setJoueur2){
-            return joueur1;
+        if (this.setJoueur1>this.setJoueur2){
+            return this.joueur1;
         }
-        return joueur2;
+        return this.joueur2;
     }
     
     /**
@@ -176,34 +178,34 @@ public class Match {
     
     public void printScores(){
         System.out.println("");
-        System.out.println(joueur1);
-        for (int i=0 ; i<(setJoueur1+setJoueur2)*4+1 ; i++){
+        System.out.println(this.joueur1);
+        for (int i=0 ; i<(this.setJoueur1+this.setJoueur2)*4+1 ; i++){
             System.out.print("_");
         }
         System.out.println("");
         for (int i=0 ; i<2 ; i++){
-            for (int j=0 ; j<setJoueur1+setJoueur2 ; j++){
-                System.out.print("| " + scores[j][i] + " ");
+            for (int j=0 ; j<this.setJoueur1+this.setJoueur2 ; j++){
+                System.out.print("| " + this.scores[j][i] + " ");
             }
             if (i==0){
-                System.out.println("| --> " + setJoueur1 + " set(s) remportés");
+                System.out.println("| --> " + this.setJoueur1 + " set(s) remportés");
             }
             else{
-                System.out.println("| --> " + setJoueur2 + " set(s) remportés");
+                System.out.println("| --> " + this.setJoueur2 + " set(s) remportés");
             }
             
         }
-        for (int i=0 ; i<(setJoueur1+setJoueur2)*4+1 ; i++){
+        for (int i=0 ; i<(this.setJoueur1+this.setJoueur2)*4+1 ; i++){
             System.out.print("¯");
         }
         System.out.println("");
-        System.out.println(joueur2);
+        System.out.println(this.joueur2);
         System.out.println("");
     }
 
     @Override
     public String toString() {
-        return "Le match opposera " + joueur1 + " qui commencera à servir, et " + joueur2 + ". Il sera arbitré par " + arbitre + '.';
+        return "Le match opposera " + this.joueur1 + " qui commencera à servir, et " + this.joueur2 + ". Il sera arbitré par " + this.arbitre + '.';
     }
     
     public int[][] getScore(){

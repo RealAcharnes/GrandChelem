@@ -17,26 +17,30 @@ public class Joueur extends Personne {
     private int classement;
     private String entraineur;
     final Habits habit;
-    private Couleur couleurShort;
+    private Couleur couleur;
     private static int compteurJoueur;
+    private String nationalite;
+    private int nombreVictoire;
     ArrayList<Match> listeMatch = new ArrayList<Match>();
         
     public Joueur(int genre, String nomNaissance, String prenom, int main, String sponsor, String entraineur, String nationalite){
         super(genre, nomNaissance, prenom);
-        if (genre==2){
-            habit=Habits.JUPE;
+        if (genre==2){                      //Habits et couleurs par défaut
+            this.habit=Habits.JUPE;
+            this.couleur = Couleur.NOIR;
         }
         else{
-            habit=Habits.SHORT;
+            this.habit=Habits.SHORT;
+            this.couleur = Couleur.BLANC;
         }
         this.main = main;
         this.sponsor = sponsor;
         this.entraineur = entraineur;
-        this.couleurShort = Couleur.BLEU;   //Couleur par défaut pour un homme -> Bleu
         compteurJoueur++;
         this.classement = compteurJoueur;
         this.nationalite=nationalite;
     }
+    
     //Accessors
     public int getMain(){
         return this.main;
@@ -50,11 +54,14 @@ public class Joueur extends Personne {
     public String getEntraineur(){
         return this.entraineur;
     }
-    public Couleur getCouleurShort(){
-        return this.couleurShort;
+    public Couleur getCouleur(){
+        return this.couleur;
     }
     public ArrayList<Match> getListeMatch(){
         return this.listeMatch;
+    }
+    public int getNombreVictoire(){
+        return this.nombreVictoire;
     }
     //Mutator
     public void setSponsor(String sponsor){
@@ -66,13 +73,24 @@ public class Joueur extends Personne {
     public void setEntraineur(String entraineur){
         this.entraineur = entraineur;
     }
-    public void setCouleurShort(Couleur couleurShort){
-        this.couleurShort = couleurShort;
+    public void setCouleur(Couleur couleur){
+        this.couleur = couleur;
+        String entete = toString();
+        if (this.genre == Genre.HOMME){
+            System.out.println(entete + " : Change la couleur de son short en " + this.couleur);
+        }
+        if (this.genre == Genre.FEMME){
+            System.out.println(entete + " : Change la couleur de sa jupe en " + this.couleur);
+        }
+    }
+    
+    public void addVictoire(){
+        this.nombreVictoire ++;
     }
 
     @Override
     public String toString() {
-        return prenom + " " + nomNaissance + " (" + nationalite + ')';
+        return this.prenom + " " + this.nomNaissance + " (" + this.nationalite + ')';
     }
     
     
