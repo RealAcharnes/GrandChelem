@@ -22,6 +22,12 @@ public class Personne {
     public int taille;
     public double poids;
     
+    /**
+     * Création d'une personne
+     * @param genre 1 (homme) ou 2 (femme) (défaut : homme)
+     * @param nomNaissance
+     * @param prenom 
+     */
     public Personne(int genre, String nomNaissance, String prenom){  //genre = 1 -> Homme / genre = 2 -> Femme / autre ->Homme
         switch (genre){
             case 1:
@@ -38,6 +44,7 @@ public class Personne {
         this.nomNaissance=nomNaissance;
         this.prenom=prenom;
     }
+    
     //Les accessors
     public Genre getGenre(){
         return this.genre;
@@ -56,6 +63,9 @@ public class Personne {
     }
     public String getDateNaissance(){
         return this.dateNaissance;
+    }
+    public String getLieuNaissance(){
+        return this.lieuNaissance;
     }
     public String getDateDeces(){
         return this.dateDeces;

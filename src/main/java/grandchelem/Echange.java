@@ -13,6 +13,12 @@ public class Echange {
     int dureeEchange;
     Joueur gagnantEchange;
     
+    /**
+     * Création d'un échange
+     * @param joueur1
+     * @param joueur2
+     * @param serveur 
+     */
     public Echange(Joueur joueur1, Joueur joueur2, int serveur){
         this.joueur1=joueur1;
         this.joueur2=joueur2;
@@ -20,6 +26,10 @@ public class Echange {
         dureeEchange=0;
     }
     
+    /**
+     * Permet de savoir le gagnant de l'échange lorsque celui ci est terminé
+     * @return le gagnant de l'échange
+     */
     public Joueur gagnantEchange(){
         if (serveur==1){
             if (dureeEchange%2==0){
@@ -43,10 +53,19 @@ public class Echange {
         return gagnantEchange;
     }
     
+    /** 
+     * Permet de savoir si l'échange a été remporté ou non
+     * @return true si l'échange a été remporté, false sinon
+     */
     public boolean echangeRemporte(){
         return gagnantEchange == joueur1 || gagnantEchange == joueur2;
     }
     
+    /**
+     * Joue le premier service, en mode manuel (choix du résultat par l'utilisateur) ou automatique (aléatoire)
+     * @param mode manuel (1) ou automatique (0)
+     * @return 1 (service réussi), 2 (service let) ou 0 (service raté)
+     */
     public int premierService(int mode){
         switch (mode){
             case 1 -> {
@@ -86,6 +105,11 @@ public class Echange {
         } 
     }
     
+    /**
+     * Joue le second service, en mode manuel (choix du résultat par l'utilisateur) ou automatique (aléatoire)
+     * @param mode manuel (1) ou automatique (0)
+     * @return 1 (service réussi), 2 (service let) ou 0 (service raté)
+     */
     public int secondService(int mode){
         switch (mode){
             case 1 -> {
@@ -125,6 +149,11 @@ public class Echange {
         } 
     }
     
+    /**
+     * Joue un retour de balle, en mode manuel (choix du résultat par l'utilisateur) ou automatique (aléatoire)
+     * @param mode manuel (1) ou automatique (0)
+     * @return 1 (retour réussi) ou 0 (retour raté)
+     */
     public int retour(int mode){
         switch(mode){
             case 1 -> {

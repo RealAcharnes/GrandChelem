@@ -12,6 +12,12 @@ public class Spectateur extends Personne {
     private Couleur couleur;
     private int seat;
     
+    /**
+     * Création d'un spectateur
+     * @param genre 1 (homme) ou 2 (femme) (défaut : homme)
+     * @param nomNaissance
+     * @param prenom 
+     */
     public Spectateur(int genre, String nomNaissance, String prenom){
         super(genre, nomNaissance, prenom);
          if (genre==2){

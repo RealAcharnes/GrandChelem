@@ -18,7 +18,6 @@ public class Set {
      * @param joueur2
      * @param arbitre 
      */
-    
     public Set(Joueur joueur1, Joueur joueur2, Arbitre arbitre){
         jeuxJoueur1=0;
         jeuxJoueur2=0;
@@ -34,7 +33,6 @@ public class Set {
      * @param affichage affichage du détail point par point oui (1) ou non (0)
      * @return 
      */
-    
     public Joueur jouerJeu(int serveur, int mode, int affichage){
         if (mode==1){
             Scanner saisieUtilisateur = new Scanner(System.in);
@@ -66,7 +64,6 @@ public class Set {
      * Permet de savoir si le set a été remporté
      * @return true si le set est terminé, false sinon
      */
-    
     public boolean setRemporte(){
         if(jeuxJoueur1 == 7 || jeuxJoueur2 == 7){
             return true;

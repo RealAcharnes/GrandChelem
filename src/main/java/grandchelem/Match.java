@@ -27,7 +27,6 @@ public class Match {
      * @param arbitre
      * @param sexe match homme(1) ou femme(2)
      */
-    
     public Match(Joueur joueur1, Joueur joueur2, Arbitre arbitre, int sexe){
         double i = Math.random();
         if (i<0.5){
@@ -58,7 +57,6 @@ public class Match {
      * @param affichage affichage du détail point par point oui (1) ou non (0)
      * @return 
      */
-    
     public Joueur jouerMatch(int mode, int affichage){
         if (mode == 0) {
             int i = 0;
@@ -96,7 +94,6 @@ public class Match {
      * @param affichage affichage du détail point par point oui (1) ou non (0)
      * @return 
      */
-    
     public int[] jouerSet(int mode, int affichage){
         if (mode==1){
             Scanner saisieUtilisateur = new Scanner(System.in);
@@ -135,7 +132,6 @@ public class Match {
      * Permet de mettre à jour le nombre de set de chaque joueur
      * @param gagnant le gagnant du set écoulé
      */
-    
     public void setGagne(Joueur gagnant){
         if (gagnant==joueur1){
             this.setJoueur1++;
@@ -149,7 +145,6 @@ public class Match {
      * Permet de savoir si le match a été remporté
      * @return true si le match a été remporté, false sinon
      */
-    
     public boolean matchRemporte(){
 
         if(sexe==2){
@@ -164,7 +159,6 @@ public class Match {
      * Permet de connaitre le gagnant du match lorsque le match a déjà été remporté
      * @return le gagnant du match
      */
-    
     public Joueur gagnantMatch(){
         if (this.setJoueur1>this.setJoueur2){
             return this.joueur1;
@@ -175,7 +169,6 @@ public class Match {
     /**
      * Affichage final des scores sous forme de tableau
      */
-    
     public void printScores(){
         System.out.println("");
         System.out.println(this.joueur1);
