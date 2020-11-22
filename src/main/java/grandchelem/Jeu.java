@@ -12,6 +12,13 @@ public class Jeu {
     Arbitre arbitre;
     int serveur;
     
+    /**
+     * Création d'un jeu
+     * @param joueur1
+     * @param joueur2
+     * @param arbitre 
+     */
+    
     public Jeu(Joueur joueur1, Joueur joueur2, Arbitre arbitre){
         pointsJoueur1=0;
         pointsJoueur2=0;
@@ -19,6 +26,14 @@ public class Jeu {
         this.joueur2=joueur2;
         this.arbitre=arbitre;
     }
+    
+    /**
+     * Permet de jouer un échange entre 2 joueurs
+     * @param serveur le joueur qui servira en premier pour cet échange
+     * @param mode manuel (1) ou automatique (0)
+     * @param affichage affichage du détail point par point oui (1) ou non (0)
+     * @return le gagnant de l'échange
+     */
     
     public Joueur jouerEchange(int serveur, int mode, int affichage){
         Echange echange = new Echange(joueur1, joueur2, serveur);
@@ -78,6 +93,11 @@ public class Jeu {
         return echange.gagnantEchange;
     }
     
+    /**
+     * Met à jour les points pour le jeu en court après victoire de l'échange
+     * @param gagnant le gagnant de l'échange
+     */
+    
     public void pointRemporte(Joueur gagnant){
         if (gagnant==joueur1){
             switch (pointsJoueur1){
@@ -112,12 +132,22 @@ public class Jeu {
         }
     }
     
+    /**
+     * Permet de connaître le gagnant du jeu, lorsque l'on sait que le jeu a été remporté
+     * @return le gagnant du jeu en cours
+     */
+    
     public Joueur gagnantJeu(){
         if (pointsJoueur1>pointsJoueur2){
             return joueur1;
         }
         return joueur2;
     }
+    
+    /**
+     * Permet de savoir si le jeu a été remporté par l'un des deux joueurs
+     * @return true si le jeu a été remporté, false sinon
+     */
     
     public boolean jeuRemporte(){
         return pointsJoueur1 == 50 || pointsJoueur2 == 50;
