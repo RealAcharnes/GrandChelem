@@ -5,7 +5,6 @@ package grandchelem;
  * @author charl
  */
 public class Spectateur extends Personne implements InterfaceSpectateur {
-    private Couleur couleurChemise;
     public int prixBillet;
     private String tribune;
     final Habits habit;
@@ -34,10 +33,10 @@ public class Spectateur extends Personne implements InterfaceSpectateur {
         this.couleur = couleur;
         String entete = toString();
         if (this.genre == Genre.HOMME){
-            System.out.println(entete + " : Change la couleur de son short en " + this.couleur);
+            System.out.println(entete + " : Change la couleur de sa chemise en " + this.couleur);
         }
         if (this.genre == Genre.FEMME){
-            System.out.println(entete + " : Change la couleur de sa jupe en " + this.couleur);
+            System.out.println(entete + " : Change la couleur de ses lunettes en " + this.couleur);
         }
     }
     
