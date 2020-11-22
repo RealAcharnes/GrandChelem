@@ -75,12 +75,15 @@ public class Echange {
                 switch (input){
                     case 1 -> {
                         dureeEchange++;
+                        System.out.println("Premier service réussi !");
                         return 1; //service réussi
                     }
                     case 2 -> {
+                        System.out.println("Service let : nouveau 1er service");
                         return 2;
                     }
                     case 0 -> {
+                        System.out.println("Premier service faux, 2nd service");
                         return 0;
                     }
                     default -> {
@@ -118,13 +121,16 @@ public class Echange {
                 int input = saisieUtilisateur.nextInt();
                 switch (input){
                     case 1 -> {
+                        System.out.println("Second service réussi !");
                         dureeEchange++;
                         return 1; //service réussi
                     }
                     case 2 -> {
+                        System.out.println("Service let : nouveau 2e service");
                         return 2;
                     }
                     case 0 -> {
+                        System.out.println("Second service faute : échange perdu");
                         return 0;
                     }
                     default -> {
@@ -162,9 +168,11 @@ public class Echange {
                 int input = saisieUtilisateur.nextInt();
                 switch (input){
                     case 0 -> {
+                        System.out.println("Faute ! L'échange est perdu");
                         return 0;
                     }
                     default -> {
+                        System.out.println("Retour réussi ! L'échange continu");
                         dureeEchange++;
                         return 1;
                     }
