@@ -4,7 +4,7 @@ package grandchelem;
  *
  * @author charl
  */
-public class Spectateur extends Personne {
+public class Spectateur extends Personne implements InterfaceSpectateur {
     private Couleur couleurChemise;
     public int prixBillet;
     private String tribune;
@@ -39,6 +39,10 @@ public class Spectateur extends Personne {
         if (this.genre == Genre.FEMME){
             System.out.println(entete + " : Change la couleur de sa jupe en " + this.couleur);
         }
+    }
+    
+    public void RegarderMatch(Joueur joueur1, Joueur joueur2, Arbitre arbitre, int sexe){
+        InterfaceSpectateur.super.regarderMatch(joueur1, joueur2, arbitre, sexe);
     }
     
     @Override

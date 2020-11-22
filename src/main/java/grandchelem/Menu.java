@@ -25,7 +25,9 @@ public class Menu {
     
     
     public Menu(){
-        System.out.println("Bonjour et bienvenu, dans les menus qui vont suivre, lorqu'une proposition est précédée ou suivie d'un chiffre, veuillez répondre par le chiffre correspondant.");
+        System.out.println("Bonjour et bienvenu, dans les menus qui vont suivre, lorqu'une proposition"
+                + " est précédée ou suivie d'un chiffre, veuillez"
+                + " répondre par le chiffre correspondant.");
         System.out.println("");
         System.out.println("Exemple : 1) Oui -> Il faut entrer 1 pour répondre Oui");
         System.out.println("Autre exemple : Oui(1) -> Il faut entrer 1 pour répondre Oui");
