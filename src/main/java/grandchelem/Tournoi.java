@@ -132,7 +132,7 @@ public class Tournoi {
             int i = 0;
             for (int j=0; j< 64; j++) {
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
-                Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre));
+                Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                 Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                 gagnantMatch.addVictoire();
                 this.secondTour.add(gagnantMatch);
@@ -177,7 +177,7 @@ public class Tournoi {
             int i = 0;
             for (int j=0; j< 64; j++) {
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
-                Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre));
+                Match unmatch = new Match(this.listeJoueur.get(i), this.listeJoueur.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                 Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                 gagnantMatch.addVictoire();
                 this.secondTour.add(gagnantMatch);
@@ -274,7 +274,7 @@ public class Tournoi {
                 for (int j=0; j< 32; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                     gagnantMatch.addVictoire();
                     this.seizièmeDeFinale.add(gagnantMatch);
@@ -320,7 +320,7 @@ public class Tournoi {
                 for (int j=0; j< 32; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.secondTour.get(i), this.secondTour.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                     gagnantMatch.addVictoire();
                     this.seizièmeDeFinale.add(gagnantMatch);
@@ -421,7 +421,7 @@ public class Tournoi {
                 for (int j=0; j< 16; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                     gagnantMatch.addVictoire();
                     this.huitièmeDeFinale.add(gagnantMatch);
@@ -468,7 +468,7 @@ public class Tournoi {
                 for (int j=0; j< 16; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.seizièmeDeFinale.get(i), this.seizièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                     gagnantMatch.addVictoire();
                     this.huitièmeDeFinale.add(gagnantMatch);
@@ -569,7 +569,7 @@ public class Tournoi {
                 for (int j=0; j< 8; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                     gagnantMatch.addVictoire();
                     this.quartDeFinale.add(gagnantMatch);
@@ -616,7 +616,7 @@ public class Tournoi {
                 for (int j=0; j< 8; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.huitièmeDeFinale.get(i), this.huitièmeDeFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                     gagnantMatch.addVictoire();
                     this.quartDeFinale.add(gagnantMatch);
@@ -716,7 +716,7 @@ public class Tournoi {
                 int i = 0;
                 for (int j=0; j< 4; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
-                    Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                     gagnantMatch.addVictoire();
                     this.demiFinale.add(gagnantMatch);
@@ -763,7 +763,7 @@ public class Tournoi {
                 for (int j=0; j< 4; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.quartDeFinale.get(i), this.quartDeFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                     gagnantMatch.addVictoire();
                     this.demiFinale.add(gagnantMatch);
@@ -864,7 +864,7 @@ public class Tournoi {
                 for (int j=0; j< 2; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                     gagnantMatch.addVictoire();
                     this.finale.add(gagnantMatch);
@@ -910,7 +910,7 @@ public class Tournoi {
                 for (int j=0; j< 2; j++) {
                     int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                    Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre));
+                    Match unmatch = new Match(this.demiFinale.get(i), this.demiFinale.get(i+1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                     Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                     gagnantMatch.addVictoire();
                     this.finale.add(gagnantMatch);
@@ -1009,7 +1009,7 @@ public class Tournoi {
                 }while (erreur);
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
 
-                Match unmatch = new Match(this.finale.get(0), this.finale.get(1), this.listeArbitre.get(randomArbitre));
+                Match unmatch = new Match(this.finale.get(0), this.finale.get(1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                 Joueur gagnantMatch = unmatch.jouerMatch(0,choix);
                 gagnantMatch.addVictoire();
                 this.gagnantTournoi = gagnantMatch;
@@ -1026,7 +1026,7 @@ public class Tournoi {
             }
             case 1 ->{
                 int randomArbitre = (int)(Math.random() * (25 - 0)) + 0;
-                Match unmatch = new Match(this.finale.get(0), this.finale.get(1), this.listeArbitre.get(randomArbitre));
+                Match unmatch = new Match(this.finale.get(0), this.finale.get(1), this.listeArbitre.get(randomArbitre), this.genreTournoi);
                 Joueur gagnantMatch = unmatch.jouerMatch(1,1);
                 gagnantMatch.addVictoire();
                 this.gagnantTournoi = gagnantMatch;
