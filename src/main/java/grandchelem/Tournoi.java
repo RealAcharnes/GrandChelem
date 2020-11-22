@@ -32,6 +32,13 @@ public class Tournoi {
     int etatTournoi;    //Nombre entre 0 et 7 illustrant l'avancé d'un tournoi (ex: 7, le tournoi est terminé.
     int genreTournoi; //1 --> Tournoi masculin  2 --> Tournoi Féminin
     
+     /**
+     * Constructeur d'un tournoi
+     * @param listeJoueur
+     * @param listeArbitre
+     * @param listeSpectateur
+     * @param genreTournoi Tournoi homme(1) ou femme(2)
+     */
     public Tournoi(ArrayList<Joueur> listeJoueur, ArrayList<Arbitre> listeArbitre, ArrayList<Spectateur> listeSpectateur, int genreTournoi){
         this.listeJoueur = listeJoueur;
         this.listeArbitre = listeArbitre;
@@ -42,7 +49,14 @@ public class Tournoi {
         
     }
     
-    //Un tournoi comporte 128 joueurs, disons qu'il comporte 25 arbitres.
+    /**
+     * Un tournoi comporte 128 joueurs, disons qu'il comporte 25 arbitres.
+     * Genere le reste des joueurs aléatoirement pour le tournoi s'il n'y a pas
+     * 128 joueurs dans la liste déja inscrits.
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @return ArrayList<> des joueurs générés
+     */
     public ArrayList<Joueur> genererJoueursTournoi() throws IOException{
         while (this.listeJoueur.size() != 128) {
             Joueur unjoueur = Menu.creationAutomatiqueJoueur(this.genreTournoi);
@@ -55,7 +69,13 @@ public class Tournoi {
         this.leClassement = new ArrayList<>(this.listeJoueur);
         return this.listeJoueur;
     }
-    
+    /**
+     * Genere le reste des arbitres aléatoirement pour le tournoi s'il n'y a pas
+     * 25 arbitres dans la liste déja inscrits.
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @return ArrayList<> des arbitres générés
+     */
     public ArrayList<Arbitre> genererArbitresTournoi() throws IOException{
         while (this.listeArbitre.size() != 25) {
             Arbitre unarbitre = Menu.creationAutomatiqueArbitre();
@@ -64,7 +84,14 @@ public class Tournoi {
         System.out.println("Arbitres crées avec succès");
         return this.listeArbitre;
     }
-    
+    /**
+     * Genere des spectateurs pour le tournoi si il n'y en a pas 10
+     * la nombre de spectateur est ici fixé à 10 (ligne 98) pour des raison de rapidité d'execution,
+     * generer 300 spectateur à partir de fichiers csv est plsu long.
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @return ArrayList<> des spectateurs générés
+     */
     public ArrayList<Spectateur> genererSpectateursTournoi() throws IOException{
         System.out.println("Chargement des spectateurs");
         int k = 0;
@@ -79,7 +106,13 @@ public class Tournoi {
         System.out.println("Spectateurs crées avec succès");
         return this.listeSpectateur;
     }
-    
+    /**
+     * Lance le premier tour du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerPremierTour() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer le premier tour de façon manuel ou automatique ?");
@@ -223,6 +256,13 @@ public class Tournoi {
         }
     }
     
+    /**
+     * Lance le deuxième tour du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerSecondTour() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer le second tour de façon manuel ou automatique ?");
@@ -370,6 +410,13 @@ public class Tournoi {
         }
     }
     
+    /**
+     * Lance les seizièmes de finales du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerSeizièmesDeFinale() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer les seizièmes de finale de façon manuel ou automatique ?");
@@ -518,6 +565,13 @@ public class Tournoi {
         }
     }
     
+    /**
+     * Lance les huitièmes de finales du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerHuitièmesDeFinale() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer les huitièmes de finale de façon manuel ou automatique ?");
@@ -666,6 +720,13 @@ public class Tournoi {
         }
     }
     
+    /**
+     * Lance les quarts de finales du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerQuartDeFinale() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer les quarts de finale de façon manuel ou automatique ?");
@@ -813,6 +874,13 @@ public class Tournoi {
         }
     }
     
+    /**
+     * Lance les demi-finales du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerDemiFinale() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer la demi finale de façon manuel ou automatique ?");
@@ -959,7 +1027,13 @@ public class Tournoi {
             }
         }
     }
-    
+    /**
+     * Lance la finale du tournoi
+     * L'utilisateur à le choix de jouer cette poule en automatique
+     * ou en manuelle
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public void jouerFinale()throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous jouer la finale de façon manuel ou automatique ?");
@@ -1050,12 +1124,22 @@ public class Tournoi {
         }
     }
     
+    /**
+     * Lance le tournoi en appellant les méthodes pour générer les personnes nécessaires
+     * @throws IOException si il y a une erreur dans la lecture des
+     * fichiers .csv
+     */
     public void startTournoi() throws IOException{
         genererJoueursTournoi();
         genererArbitresTournoi();
         genererSpectateursTournoi();         
     }
-    
+    /**
+     * Permet de reprendre le tournoi la où il s'était arrété graca à la variable
+     * d'instance etatTournoi qui va de 0 à 7, 7 étant un tournoi terminé
+     * @throws IOException IOException si il y a une erreur dans la lecture des
+     * fichiers .csv
+     */
     public void reprendreTournoi() throws IOException{
         switch (this.etatTournoi) {
             case 0 -> {
@@ -1095,9 +1179,14 @@ public class Tournoi {
         }
     }
     
-    
+    /**
+     * Méthode appeller à chaque fin de poules pour trier les classement des joueurs
+     * en fonction de leurs nombres de victoires.
+     * Création d'un comparateur personalisé et utilisation de la fonction sort()
+     * du package Collections
+     */
     public void classer() {
-        Collections.sort(this.leClassement, new Comparator<Joueur>() {
+        Collections.sort(this.leClassement, new Comparator<Joueur>(){
             @Override
             public int compare(Joueur j1, Joueur j2) {
                 if (j1.getNombreVictoire() > j2.getNombreVictoire()){
@@ -1137,5 +1226,5 @@ public class Tournoi {
     public ArrayList<Joueur> getLeClassement(){
         return this.leClassement;
     }
-    
+        
 }

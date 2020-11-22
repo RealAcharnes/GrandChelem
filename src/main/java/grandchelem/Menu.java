@@ -15,6 +15,9 @@ import java.util.ArrayList;
 /**
  *
  * @author jeanc
+ * la plupart des méthodes  @throws IOException mais également catch InputMismatchException
+ * et NumberFormatException
+ * 
  */
 public class Menu {
     
@@ -23,7 +26,9 @@ public class Menu {
     static ArrayList<Spectateur> listeSpectateur = new ArrayList<Spectateur>();
     static ArrayList<Tournoi> listeTournoi = new ArrayList<Tournoi>();
     
-    
+    /**
+     * Menu de base
+     */
     public Menu(){
         System.out.println("Bonjour et bienvenu, dans les menus qui vont suivre, lorqu'une proposition"
                 + " est précédée ou suivie d'un chiffre, veuillez"
@@ -33,7 +38,13 @@ public class Menu {
         System.out.println("Autre exemple : Oui(1) -> Il faut entrer 1 pour répondre Oui");
         System.out.println("");
     }
-    
+    /**
+     * Menu de base de démarrage
+     * méthode statique
+     * @return
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public static int StartMenu() throws IOException {
         System.out.println("");
         System.out.println("Que souhaitez-vous faire ?");
@@ -74,7 +85,14 @@ public class Menu {
         }   
         return 1;
     }
-    
+    /**
+     * Menu de création de personnage
+     * l'utilisateur à le choix entre créer un joueur, un arbitre ou un spectateur
+     * il peut aussi quitter
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public static void menuCreation() throws IOException {
         System.out.println("");
         System.out.println("Quelle personne voulez-vous créer ?");
@@ -120,7 +138,15 @@ public class Menu {
             }
         }
     }
-    
+    /**
+     * Méthode qui permet de générer un joueur automatiquement à partir
+     * des fichiers .csv
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @param genre le genre de la personne que l'on souhaite créer 1 --> homme 2 -->femme 3-->aléatoire
+     * @return un joueur crée automatiquement
+     */
     public static Joueur creationAutomatiqueJoueur(int genre) throws IOException {
         if (genre == 3){ genre = (int)(Math.random() * (3 - 1)) + 1;} //3 correspond à la création aléatoire d'un homme ou d'une femme
         int main = (int)(Math.random() * (3 - 1)) + 1;
@@ -183,7 +209,14 @@ public class Menu {
                 if (inNationalite != null)inNationalite.close();
         }
     }
-     
+     /**
+     * Méthode qui permet de générer un arbitre automatiquement à partir
+     * des fichiers .csv
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @return un arbitre crée automatiquement
+     */
     public static Arbitre creationAutomatiqueArbitre() throws IOException {
         int genre = (int)(Math.random() * (3 - 1)) + 1;
         BufferedReader inNom = null;
@@ -209,7 +242,14 @@ public class Menu {
             if (inPrenom != null)inPrenom.close();
         } 
     }
-    
+    /**
+     * Méthode qui permet de générer un spectateur automatiquement à partir
+     * des fichiers .csv
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @return un spectateur crée automatiquement
+     */
     public static Spectateur creationAutomatiqueSpectateur() throws IOException {
         int genre = (int)(Math.random() * (3 - 1)) + 1;
         BufferedReader inNom = null;
@@ -235,7 +275,12 @@ public class Menu {
             if (inPrenom != null)inPrenom.close();
         }
     }
-    
+    /**
+     * Menu pour choisir entre une création automatique ou manuelle d'un joueur
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public static void menuCreationJoueur() throws IOException {
         System.out.println("");
         System.out.println("Voulez-vous créer un joueur de facon automatique ou manuel ?");
@@ -462,7 +507,12 @@ public class Menu {
             }
         }
     }
-    
+    /**
+     * Menu pour choisir entre une création automatique ou manuelle d'un arbitre
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public static void menuCreationArbitre() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous créer un arbitre de facon automatique ou manuel ?");
@@ -623,7 +673,12 @@ public class Menu {
             }
         }
     }
-    
+    /**
+     * Menu pour choisir entre une création automatique ou manuelle d'une personne du public
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public static void menuCreationPublic() throws IOException{
         System.out.println("");
         System.out.println("Voulez-vous créer une personne du public de facon automatique ou manuel ?");
@@ -785,7 +840,14 @@ public class Menu {
         }
         
     }
-    
+    /**
+     * Menu consacré au tournoi, içi l'utilisateur peut lancer un nouveau tournoi,
+     * reprendre un tournoi déja débuté, obtenir les informations d'un tournoi ou revenir
+     * au menu précédent.
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     */
     public static void menuTournoi() throws IOException{
         System.out.println("");
         System.out.println("Attention, si vous voulez inscrire des joueurs, des spectateurs ou des arbitres faite le avant de lancer un tournoi dans les menus précédents");
@@ -944,7 +1006,15 @@ public class Menu {
             }
         }
     }
-    
+    /**
+     * Menu pour obtenir les infos sur les joueurs, les arbitres, les spectateurs
+     * et le classement d'un tournoi
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @param numeroTournoi numéro du tournoi auquel on s'interresse
+     * pour obtenir les informations
+     */
     public static void menuInfo(int numeroTournoi) throws IOException{
         System.out.println("");
         System.out.println("------ Menu informations ------ ");
@@ -1021,7 +1091,15 @@ public class Menu {
             }
         }
     }
-    
+    /**
+     * Menu pour choisir précisément le joueur pour lequelle on veut
+     * avoir des informations
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @param numeroTournoi numéro du tournoi auquel on s'interresse
+     * pour obtenir les informations
+     */
     public static void menuChoixJoueur(int numeroTournoi) throws IOException{
         System.out.println("");
         System.out.println("Voici la liste des joueurs du tournoi :");
@@ -1057,7 +1135,14 @@ public class Menu {
             menuInfoJoueur(numeroTournoi, choix);
         }
     }
-    
+    /**
+     * Affichage des informations résumés des arbitres du tournoi en question
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @param numeroTournoi numéro du tournoi auquel on s'interresse
+     * pour obtenir les informations
+     */
     public static void menuChoixArbitre(int numeroTournoi) throws IOException{
         System.out.println("");
         System.out.println("Liste des arbitres :");
@@ -1090,7 +1175,14 @@ public class Menu {
             menuInfo(numeroTournoi);
         }
     }
-    
+    /**
+     * Affichage des informations résumés des spectateurs du tournoi en question
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @param numeroTournoi numéro du tournoi auquel on s'interresse
+     * pour obtenir les informations
+     */
     public static void menuChoixSpectateur(int numeroTournoi) throws IOException{
         System.out.println("");
         System.out.println("Liste des spectateurs :");
@@ -1124,7 +1216,15 @@ public class Menu {
             menuInfo(numeroTournoi);
         }
     }
-    
+    /**
+     * Affichage du classement du joueur et des ses matchs joués
+     * méthode statique
+     * @throws IOException retourne une erreur si il y a un problème avec le traitement
+     * des fichiers
+     * @param numeroTournoi numéro du tournoi auquel on s'interresse
+     * @param numeroJoueur numéro du joueur choisi dans la liste du menu précédente
+     * pour obtenir les informations
+     */
     public static void menuInfoJoueur(int numeroTournoi, int numeroJoueur) throws IOException{
         Tournoi leTournoi = listeTournoi.get(numeroTournoi-1);
         Joueur leJoueur = leTournoi.getListeJoueur().get(numeroJoueur-1);
