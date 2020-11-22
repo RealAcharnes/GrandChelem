@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author jeanc
  */
-public class Joueur extends Personne {
+public class Joueur extends Personne implements InterfaceSpectateur {
     final int main;    //1 = droitier 2 = gaucher
     private String sponsor;
     private int classement;
@@ -49,6 +49,10 @@ public class Joueur extends Personne {
         compteurJoueur++;
         this.classement = compteurJoueur;
         this.nationalite=nationalite;
+    }
+    
+    public void RegarderMatch(Joueur joueur1, Joueur joueur2, Arbitre arbitre, int sexe){
+        InterfaceSpectateur.super.regarderMatch(joueur1, joueur2, arbitre, sexe);
     }
     
     //Accessors
