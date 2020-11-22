@@ -18,8 +18,17 @@ public class Match {
     int setJoueur1;
     int setJoueur2;
     int[][] scores;
+    int sexe;//1=homme, 2=femme
     
-    public Match(Joueur joueur1, Joueur joueur2, Arbitre arbitre){
+    /**
+     * Création d'un match
+     * @param joueur1
+     * @param joueur2
+     * @param arbitre
+     * @param sexe match homme(1) ou femme(2)
+     */
+    
+    public Match(Joueur joueur1, Joueur joueur2, Arbitre arbitre, int sexe){
         double i = Math.random();
         if (i<0.5){
             this.joueur1=joueur1;
@@ -30,11 +39,25 @@ public class Match {
             this.joueur2=joueur1;
         }
         this.arbitre=arbitre;
+
+        this.sexe=sexe;
         this.setJoueur2=0;
         this.setJoueur1=0;
-        this.scores=new int[5][2];
+        if (sexe==2){
+            scores=new int[3][2];
+        }
+        else{
+            scores=new int[5][2];
+        }
         System.out.println(toString());
     }
+    
+    /**
+     * Jouer un match 
+     * @param mode manuel (1) ou automatique (0)
+     * @param affichage affichage du détail point par point oui (1) ou non (0)
+     * @return 
+     */
     
     public Joueur jouerMatch(int mode, int affichage){
         if (mode == 0) {
@@ -66,6 +89,13 @@ public class Match {
         }
         
     }
+    
+    /**
+     * Jouer un set du match
+     * @param mode manuel (1) ou automatique (0)
+     * @param affichage affichage du détail point par point oui (1) ou non (0)
+     * @return 
+     */
     
     public int[] jouerSet(int mode, int affichage){
         if (mode==1){
@@ -101,6 +131,11 @@ public class Match {
         return tab;
     }
     
+    /**
+     * Permet de mettre à jour le nombre de set de chaque joueur
+     * @param gagnant le gagnant du set écoulé
+     */
+    
     public void setGagne(Joueur gagnant){
         if (gagnant==joueur1){
             this.setJoueur1++;
@@ -110,9 +145,25 @@ public class Match {
         }
     }
     
+    /**
+     * Permet de savoir si le match a été remporté
+     * @return true si le match a été remporté, false sinon
+     */
+    
     public boolean matchRemporte(){
-        return this.setJoueur1 == 3 || setJoueur2 == 3;
+
+        if(sexe==2){
+            return setJoueur1 == 2 || setJoueur2 == 2;
+        }
+        else{
+            return setJoueur1 == 3 || setJoueur2 == 3;
+        }  
     }
+    
+    /**
+     * Permet de connaitre le gagnant du match lorsque le match a déjà été remporté
+     * @return le gagnant du match
+     */
     
     public Joueur gagnantMatch(){
         if (this.setJoueur1>this.setJoueur2){
@@ -120,6 +171,10 @@ public class Match {
         }
         return this.joueur2;
     }
+    
+    /**
+     * Affichage final des scores sous forme de tableau
+     */
     
     public void printScores(){
         System.out.println("");
